@@ -21,7 +21,11 @@ export default function RangeSelection({ setData }) {
   async function handleClick(range) {
     try {
       // TODO make button appearance change (pushed in)
-      const res = await fetch(`http://localhost:8080/api/scrape/${range}`);
+      // TODO VAR ENV
+      // !
+      const res = await fetch(
+        `https://pcs-predictions.herokuapp.com/api/scrape/${range}`
+      );
 
       if (res.status === 200) {
         setRange(range);

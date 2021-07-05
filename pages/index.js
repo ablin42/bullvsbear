@@ -18,7 +18,11 @@ function Home({ data }) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch(`http://localhost:8080/api/scrape/1D`);
+  // TODO VAR ENV
+  // !
+  const res = await fetch(
+    `https://pcs-predictions.herokuapp.com/api/scrape/1D`
+  );
   const data = await res.json();
 
   if (data.error) return { notFound: true };
