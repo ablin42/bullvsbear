@@ -16,13 +16,14 @@ const RANGE_OPTIONS = [
 ];
 
 export default function RangeSelection({ setData }) {
-  const [range, setRange] = useState("2H");
+  const [range, setRange] = useState("1H");
 
   async function handleClick(range) {
     try {
       // TODO make button appearance change (pushed in)
       // TODO VAR ENV
       // !
+      // https://pcs-predictions.herokuapp.com
       const res = await fetch(
         `https://pcs-predictions.herokuapp.com/api/scrape/${range}`
       );
@@ -50,6 +51,9 @@ export default function RangeSelection({ setData }) {
           </button>
         );
       })}
+      <br />
+      <br />
+      <h1>{range}</h1>
     </div>
   );
 }

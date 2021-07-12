@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import RangeSelection from "./RangeSelection";
 
-export default function RangedData({ data }) {
-  const [consumedData, setData] = useState(data);
+export default function RangedData({ averages }) {
+  const [consumedData, setData] = useState(averages);
 
   return (
-    <>
+    <div style={{ textAlign: "center" }}>
       <RangeSelection setData={setData} />
 
       <div>
@@ -27,6 +27,6 @@ export default function RangedData({ data }) {
         <h2>Number of down round: {consumedData.nbRoundDOWN}</h2>
         <h2>Number of up round: {consumedData.nbRoundUP}</h2>
       </div>
-    </>
+    </div>
   );
 }
