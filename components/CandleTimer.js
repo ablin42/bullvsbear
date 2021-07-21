@@ -28,7 +28,7 @@ export default function CandleTimer({ candleTiming }) {
 
   // TODO style
   return (
-    <div style={{ width: "33%", margin: "auto" }}>
+    <div>
       <h3 style={{ textAlign: "center" }}>candle timing</h3>
       <ProgressBar now={timeLeft / 3} label={`${timeLeft} / 300`} />
     </div>

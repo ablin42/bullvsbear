@@ -25,7 +25,7 @@ export default function OracleTimer({ candleTiming }) {
 
   // TODO style
   return (
-    <div style={{ width: "33%", margin: "auto" }}>
+    <div>
       <h3 style={{ textAlign: "center" }}>
         oracle update: {timeLeft}s ago / avg refresh 90s
       </h3>

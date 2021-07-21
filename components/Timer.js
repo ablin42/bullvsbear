@@ -30,7 +30,7 @@ export default function Timer({ oracle }) {
   //   }
 
   return (
-    <div style={{ width: "33%", margin: "auto" }}>
+    <div>
       <h3 style={{ textAlign: "center" }}>time left</h3>
       {timeLeft} seconds
       <ProgressBar now={(300 - timeLeft) / 3} />

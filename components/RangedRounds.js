@@ -12,9 +12,12 @@ const HistoryWrapper = styled.div`
   width: 700px;
 `;
 
-const History = styled.div`    display: flex;
-    justify-content: space-evenly;
-}`;
+const History = styled.div`
+  width: 700px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+`;
 
 export default function RangedRounds({ rounds }) {
   const [showHistory, setShowHistory] = useState(null);
@@ -45,7 +48,7 @@ export default function RangedRounds({ rounds }) {
         const roundStyle = winningPayout === payoutUP ? "green" : "red";
 
         return (
-          <div key={id}>
+          <div style={{ width: "700px", margin: "auto" }} key={id}>
             <Wrapper
               style={{ backgroundColor: roundStyle }}
               onClick={() => handleClick(id)}

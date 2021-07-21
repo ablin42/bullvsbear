@@ -9,6 +9,12 @@ import Timer from "../components/Timer";
 import RoundOracle from "../components/RoundOracle";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { API_HOST } from "../api_host";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
 
 function Home({ averages, timing, oracle }) {
   const [fetching, setFetching] = useState(false);
@@ -32,7 +38,7 @@ function Home({ averages, timing, oracle }) {
 
   const { candleTiming, oracle: lastOracle } = currentTiming;
   return (
-    <div>
+    <div style={{ marginTop: "15px" }}>
       <Head>
         <title>Bull vs Bear</title>
         <meta
@@ -41,12 +47,16 @@ function Home({ averages, timing, oracle }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <RangedData averages={averages} />
-      <hr />
-      <CandleTimer candleTiming={candleTiming} />
-      <OracleTimer candleTiming={parseInt(lastOracle.date)} />
-      <Timer oracle={lastOracle} />
-      <RoundOracle oracle={oracle} />
+      <Wrapper>
+        <div>
+          <RangedData averages={averages} />
+          <hr />
+          <CandleTimer candleTiming={candleTiming} />
+          <OracleTimer candleTiming={parseInt(lastOracle.date)} />
+          <Timer oracle={lastOracle} />
+        </div>
+        <RoundOracle oracle={oracle} />
+      </Wrapper>
       <hr />
       <RangedRounds rounds={averages.entries} />
     </div>
