@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-function Home({ averages, timing, oracle }) {
+function Home({ averages, timing, oracle, averagesWithHistory }) {
   const [fetching, setFetching] = useState(false);
   const [currentTiming, setTiming] = useState(timing);
 
@@ -58,7 +58,7 @@ function Home({ averages, timing, oracle }) {
         <RoundOracle oracle={oracle} />
       </Wrapper>
       <hr />
-      <RangedRounds rounds={averages.entries} />
+      <RangedRounds rounds={averagesWithHistory.entries} />
     </div>
   );
 }
@@ -69,6 +69,9 @@ export async function getServerSideProps(context) {
   let res = await fetch(`${API_HOST}/api/scrape/2H`);
   const averages = await res.json();
 
+  res = await fetch(`${API_HOST}/api/scrape/2H/history`);
+  const averagesWithHistory = await res.json();
+
   res = await fetch(`${API_HOST}/api/scrape/timing`);
   const timing = await res.json();
 
@@ -78,7 +81,7 @@ export async function getServerSideProps(context) {
   // TODO error handling
   //if (averages.error) return { notFound: true };
   return {
-    props: { averages, timing, oracle },
+    props: { averages, averagesWithHistory, timing, oracle },
   };
 }
 
