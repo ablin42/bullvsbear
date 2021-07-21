@@ -72,7 +72,7 @@ export default function RangedRounds({ rounds }) {
                   <h6>payoutUP</h6>
                   <h6>oraclePrice</h6>
                   <h6>payoutDOWN</h6>
-                  <h6> /// </h6>
+                  <h6> ||| </h6>
                   <h6>secondsSinceCandleOpen</h6>
                   <h6>BNBPrice</h6>
                   <h6>BTCPrice</h6>
@@ -80,13 +80,13 @@ export default function RangedRounds({ rounds }) {
                 </History>
                 {history.map((iteration) => {
                   return (
-                    <History>
+                    <History key={iteration.roundId + "-" + history.timeLeft}>
                       <h6>{iteration.status}</h6>
                       <h6>{iteration.timeLeft}</h6>
                       <h6>{iteration.payoutUP}</h6>
                       <h6>{iteration.oraclePrice}</h6>
                       <h6>{iteration.payoutDOWN}</h6>
-                      <h6> /// </h6>
+                      <h6> ||| </h6>
                       <h6>{iteration.secondsSinceCandleOpen}</h6>
                       <h6>{iteration.BNBPrice}</h6>
                       <h6>{iteration.BTCPrice}</h6>
@@ -99,7 +99,6 @@ export default function RangedRounds({ rounds }) {
           </div>
         );
       })}
-      ;
     </div>
   );
 }

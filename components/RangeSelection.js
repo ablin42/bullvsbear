@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { API_HOST } from "../api_host";
 
 const RANGE_OPTIONS = [
   "1H",
   "2H",
-  "3H",
   "4H",
   "8H",
   "12H",
@@ -17,37 +17,49 @@ const RANGE_OPTIONS = [
 
 export default function RangeSelection({ setData }) {
   const [range, setRange] = useState("1H");
+  const [fetching, setFetching] = useState(false);
 
   async function handleClick(range) {
     try {
-      // TODO make button appearance change (pushed in)
-      // TODO VAR ENV
-      // !
-      // https://pcs-predictions.herokuapp.com
-      const res = await fetch(
-        `https://pcs-predictions.herokuapp.com/api/scrape/${range}`
-      );
+      setFetching(true);
+      const res = await fetch(`${API_HOST}/api/scrape/${range}`);
 
       if (res.status === 200) {
         setRange(range);
         const data = await res.json();
         setData(data);
       }
+      setFetching(false);
     } catch (err) {
       console.log("An error occured with the API");
     }
   }
 
-  setInterval(() => {
-    handleClick(range);
-  }, 1000 * 60 * 5);
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (fetching === false) {
+        await handleClick(range);
+      }
+    }, 1000 * 60 * 15);
+    return () => clearInterval(interval);
+  });
 
   return (
     <div>
-      {RANGE_OPTIONS.map((range) => {
+      <button
+        style={{ marginRight: "30px" }}
+        onClick={() => handleClick(range)}
+      >
+        REFRESH
+      </button>
+      {RANGE_OPTIONS.map((rangeValue) => {
         return (
-          <button key={range} onClick={() => handleClick(range)}>
-            {range}
+          <button
+            key={rangeValue}
+            style={{ borderStyle: range === rangeValue ? "inset" : "initial" }}
+            onClick={() => handleClick(rangeValue)}
+          >
+            {rangeValue}
           </button>
         );
       })}

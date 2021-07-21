@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
-  env: {
-    API_HOST: "http://localhost:8080",
-  },
+  // env: {
+  //   API_HOST: "http://localhost:8080",
+  // },
 };
