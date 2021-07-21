@@ -7,6 +7,7 @@ import CandleTimer from "../components/CandleTimer";
 import OracleTimer from "../components/OracleTimer";
 import Timer from "../components/Timer";
 import RoundOracle from "../components/RoundOracle";
+import TVChart from "../components/TVChart";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { API_HOST } from "../api_host";
 import styled from "styled-components";
@@ -16,7 +17,7 @@ const Wrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-function Home({ averages, timing, oracle, averagesWithHistory }) {
+function Timers({ timing }) {
   const [fetching, setFetching] = useState(false);
   const [currentTiming, setTiming] = useState(timing);
 
@@ -37,8 +38,19 @@ function Home({ averages, timing, oracle, averagesWithHistory }) {
   });
 
   const { candleTiming, oracle: lastOracle } = currentTiming;
+
   return (
-    <div style={{ marginTop: "15px" }}>
+    <>
+      <CandleTimer candleTiming={candleTiming} />
+      <OracleTimer candleTiming={parseInt(lastOracle.date)} />
+      <Timer oracle={lastOracle} />
+    </>
+  );
+}
+
+function Home({ averages, timing, oracle, averagesWithHistory }) {
+  return (
+    <>
       <Head>
         <title>Bull vs Bear</title>
         <meta
@@ -47,19 +59,21 @@ function Home({ averages, timing, oracle, averagesWithHistory }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Wrapper>
-        <div>
-          <RangedData averages={averages} />
-          <hr />
-          <CandleTimer candleTiming={candleTiming} />
-          <OracleTimer candleTiming={parseInt(lastOracle.date)} />
-          <Timer oracle={lastOracle} />
-        </div>
-        <RoundOracle oracle={oracle} />
-      </Wrapper>
-      <hr />
-      <RangedRounds rounds={averagesWithHistory.entries} />
-    </div>
+      <div style={{ marginTop: "5px" }}>
+        <Wrapper>
+          <div>
+            <RangedData averages={averages} />
+            <hr />
+            <Timers timing={timing} />
+          </div>
+          <RoundOracle oracle={oracle} />
+        </Wrapper>
+        <hr />
+        <TVChart />
+        <hr />
+        <RangedRounds rounds={averagesWithHistory.entries} />
+      </div>
+    </>
   );
 }
 

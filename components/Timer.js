@@ -28,12 +28,13 @@ export default function Timer({ oracle }) {
 
   //     return `${minutes}:${seconds}`;
   //   }
+  const variant = timeLeft > 45 ? "default" : "danger";
 
   return (
     <div>
       <h3 style={{ textAlign: "center" }}>time left</h3>
       {timeLeft} seconds
-      <ProgressBar now={(300 - timeLeft) / 3} />
+      <ProgressBar now={(300 - timeLeft) / 3} variant={variant} />
     </div>
   );
 }
