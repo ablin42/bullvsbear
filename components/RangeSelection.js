@@ -16,7 +16,7 @@ const RANGE_OPTIONS = [
 ];
 
 export default function RangeSelection({ setData }) {
-  const [range, setRange] = useState("1H");
+  const [range, setRange] = useState("2H");
   const [fetching, setFetching] = useState(false);
 
   async function handleClick(range) {

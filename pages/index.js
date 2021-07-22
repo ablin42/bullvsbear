@@ -12,10 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { API_HOST } from "../api_host";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-`;
+const Wrapper = styled.div``;
 
 function Timers({ timing }) {
   const [fetching, setFetching] = useState(false);
@@ -38,13 +35,20 @@ function Timers({ timing }) {
   });
 
   const { candleTiming, oracle: lastOracle } = currentTiming;
-
   return (
-    <>
-      <CandleTimer candleTiming={candleTiming} />
-      <OracleTimer candleTiming={parseInt(lastOracle.date)} />
-      <Timer oracle={lastOracle} />
-    </>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-evenly",
+      }}
+    >
+      <CandleTimer style={{ width: "30%" }} candleTiming={candleTiming} />
+      <OracleTimer
+        style={{ width: "30%" }}
+        candleTiming={parseInt(lastOracle.date)}
+      />
+      <Timer style={{ width: "30%" }} oracle={lastOracle} />
+    </div>
   );
 }
 
@@ -62,14 +66,14 @@ function Home({ averages, timing, oracle, averagesWithHistory }) {
       <div style={{ marginTop: "5px" }}>
         <Wrapper>
           <div>
-            <RangedData averages={averages} />
-            <hr />
             <Timers timing={timing} />
           </div>
+          <hr />
           <RoundOracle oracle={oracle} />
         </Wrapper>
-        <hr />
         <TVChart />
+        <hr />
+        <RangedData averages={averages} />
         <hr />
         <RangedRounds rounds={averagesWithHistory.entries} />
       </div>

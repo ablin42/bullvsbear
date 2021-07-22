@@ -1,8 +1,3 @@
-// import { useEffect } from "react";
-// import TradingViewWidget, { Themes } from "react-tradingview-widget";
-// import React, { PureComponent } from "react";
-// import PropTypes from "prop-types";
-
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
@@ -35,9 +30,7 @@ export const Themes = {
 };
 
 const SCRIPT_ID = "tradingview-widget-script";
-const CONTAINER_ID = "tradingview-widget";
-
-class TradingViewWidget extends PureComponent {
+export class TradingViewWidget extends PureComponent {
   static propTypes = {
     idd: PropTypes.string,
     allow_symbol_change: PropTypes.bool,
@@ -127,18 +120,17 @@ class TradingViewWidget extends PureComponent {
     save_image: true,
     show_popup_button: false,
     style: BarStyles.CANDLES,
-    theme: Themes.LIGHT,
+    theme: Themes.DARK,
     timezone: "Etc/UTC",
     toolbar_bg: "#F1F3F6",
     widgetType: "widget",
-    width: 980,
+    width: 950,
     withdateranges: false,
   };
 
   containerId = this.props.idd;
 
   componentDidMount = () => {
-    console.log(this.idd, this.theme);
     return this.appendScript(this.initWidget);
   };
 
@@ -250,7 +242,6 @@ export default function TVChart() {
     <div style={{ display: "flex" }}>
       <TradingViewWidget
         symbol={"BTCUSDT"}
-        theme={Themes.DARK}
         interval="5"
         locale="en"
         timezone="Europe/Paris"
@@ -260,7 +251,6 @@ export default function TVChart() {
       />
       <TradingViewWidget
         symbol={"BNBUSDT"}
-        theme={Themes.DARK}
         interval="5"
         locale="en"
         timezone="Europe/Paris"
