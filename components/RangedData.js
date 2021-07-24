@@ -9,22 +9,27 @@ export default function RangedData({ averages }) {
       <RangeSelection setData={setData} />
 
       <div>
-        <h2>Average payout: {consumedData.avgPayout}</h2>
-        <h2>Average pool: {consumedData.avgPool}</h2>
-        <h2>Number of rounds: {consumedData.nbEntries}</h2>
-        <br />
-        <h2>Esperance when betting 10 $: {consumedData.safeEsperance} $</h2>
+        <h2>Esperance when betting 10$: {consumedData.safeEsperance}$</h2>
         <h2>
-          Safe average payout: {consumedData.avgSafe} -{" "}
-          {consumedData.safePercentWr}%
+          Safe avg: x{consumedData.avgSafe} - {consumedData.safePercentWr}%
         </h2>
         <h2>
-          Risky average payout: {consumedData.avgRisky} -{" "}
-          {consumedData.riskyPercentWr}%
+          Risky avg: x{consumedData.avgRisky} - {consumedData.riskyPercentWr}%
         </h2>
         <br />
-        <h2>Number of down round: {consumedData.nbRoundDOWN}</h2>
-        <h2>Number of up round: {consumedData.nbRoundUP}</h2>
+        <div>
+          <h2>Average payout: x{consumedData.avgPayout}</h2>
+          <h2>Median payout: x{consumedData.median.payout}</h2>
+          <h2>Average pool: {consumedData.avgPool} BNB</h2>
+          <h2>Median pool: {consumedData.median.pool} BNB</h2>
+          <h2>
+            UP ROUNDS: {consumedData.nbRoundUP} | DIFF: {consumedData.avgDiffUP}
+          </h2>
+          <h2>
+            DOWN ROUNDS: {consumedData.nbRoundDOWN} | DIFF:{" "}
+            {consumedData.avgDiffDOWN}
+          </h2>
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import OracleTimer from "../components/OracleTimer";
 import Timer from "../components/Timer";
 import RoundOracle from "../components/RoundOracle";
 import TVChart from "../components/TVChart";
+import OracleHistory from "../components/OracleHistory";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { API_HOST } from "../api_host";
 import styled from "styled-components";
@@ -52,7 +53,7 @@ function Timers({ timing }) {
   );
 }
 
-function Home({ averages, timing, oracle, averagesWithHistory }) {
+function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
   return (
     <>
       <Head>
@@ -70,6 +71,7 @@ function Home({ averages, timing, oracle, averagesWithHistory }) {
           </div>
           <hr />
           <RoundOracle oracle={oracle} />
+          <OracleHistory oracles={oracles.oraclesData} />
         </Wrapper>
         <TVChart />
         <hr />
@@ -83,7 +85,6 @@ function Home({ averages, timing, oracle, averagesWithHistory }) {
 
 //getStaticProps
 export async function getServerSideProps(context) {
-  // https://pcs-predictions.herokuapp.com
   let res = await fetch(`${API_HOST}/api/scrape/2H`);
   const averages = await res.json();
 
@@ -96,10 +97,13 @@ export async function getServerSideProps(context) {
   res = await fetch(`${API_HOST}/api/scrape/current-oracle`);
   const oracle = await res.json();
 
+  res = await fetch(`${API_HOST}/api/scrape/oracle/70`);
+  const oracles = await res.json();
+
   // TODO error handling
   //if (averages.error) return { notFound: true };
   return {
-    props: { averages, averagesWithHistory, timing, oracle },
+    props: { averages, averagesWithHistory, timing, oracle, oracles },
   };
 }
 
