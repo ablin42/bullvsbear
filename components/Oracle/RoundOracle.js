@@ -101,9 +101,8 @@ export default function RoundOracle({ oracle }) {
               : "#ef5350 !important";
 
           return (
-            <div className="col-xl-2 p-3">
+            <div className="col-xl-2 p-3" key={index}>
               <TableWrapper
-                key={index}
                 style={{
                   borderColor: color,
                 }}
