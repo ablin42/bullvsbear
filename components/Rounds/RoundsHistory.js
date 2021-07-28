@@ -73,21 +73,21 @@ export default function RoundsHistory({ rounds }) {
       </div>
 
       <HistoryWrapper className="col-xl-7 p-0">
-        {showHistory && (
-          <table className="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Status</th>
-                <th scope="col">Timeleft</th>
-                <th scope="col">Candle</th>
-                <th scope="col">UP</th>
-                <th scope="col">DOWN</th>
-                <th scope="col">Pool size</th>
-                <th scope="col">Price</th>
-                <th scope="col">BNB</th>
-                <th scope="col">BTC</th>
-              </tr>
-            </thead>
+        <table className="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Status</th>
+              <th scope="col">Timeleft</th>
+              <th scope="col">Candle</th>
+              <th scope="col">UP</th>
+              <th scope="col">DOWN</th>
+              <th scope="col">Pool size</th>
+              <th scope="col">Price</th>
+              <th scope="col">BNB</th>
+              <th scope="col">BTC</th>
+            </tr>
+          </thead>
+          {showHistory && (
             <tbody>
               {sortedRounds.map((round) => {
                 const { roundId: id, history } = round;
@@ -111,8 +111,8 @@ export default function RoundsHistory({ rounds }) {
                 }
               })}
             </tbody>
-          </table>
-        )}
+          )}
+        </table>
       </HistoryWrapper>
     </Wrapper>
   );
