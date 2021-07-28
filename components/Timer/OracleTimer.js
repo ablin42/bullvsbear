@@ -1,8 +1,10 @@
+// @EXTERNALS
 import React, { useState, useEffect } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
+// * TAKES A TIMESTAMP AND RETURNS THE SECONDS SINCE THAT TIMESTAMP *
 export default function OracleTimer({ candleTiming }) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [secondsSince, setSecondsSince] = useState(calculateSecondsSince());
   const [timing, setTiming] = useState(candleTiming);
 
   useEffect(() => {
@@ -11,11 +13,11 @@ export default function OracleTimer({ candleTiming }) {
 
   useEffect(() => {
     setTimeout(() => {
-      setTimeLeft(calculateTimeLeft(timing));
+      setSecondsSince(calculateSecondsSince(timing));
     }, 1000);
   });
 
-  function calculateTimeLeft(timing) {
+  function calculateSecondsSince(timing) {
     const timestamp = +new Date() - +new Date(timing);
     const secondsLeft = timestamp / 1000;
     const roundedResult = (Math.round(secondsLeft * 10) / 10).toFixed(0);
@@ -23,15 +25,18 @@ export default function OracleTimer({ candleTiming }) {
     return roundedResult;
   }
 
-  const variant = timeLeft < 60 ? "success" : "danger";
-  // TODO style
+  let variant = "default";
+  if (secondsSince > 50) variant = "warning";
+  if (secondsSince > 70) variant = "danger";
   return (
-    <div style={{ width: "30%" }}>
-      <h3 style={{ textAlign: "center" }}>last oracle update</h3>
+    <div>
+      <h3>Seconds since oracle update</h3>
       <ProgressBar
+        striped
+        animated
         variant={variant}
-        now={(timeLeft / 90) * 100}
-        label={`${timeLeft}s / 90s`}
+        now={(secondsSince / 90) * 100}
+        label={`${secondsSince}s / 90s`}
       />
     </div>
   );

@@ -1,57 +1,31 @@
-import React, { useState, useEffect } from "react";
-
+// @EXTERNALS
+import React from "react";
 import Head from "next/head";
-import RangedData from "../components/RangedData";
-import RangedRounds from "../components/RangedRounds";
-import CandleTimer from "../components/CandleTimer";
-import OracleTimer from "../components/OracleTimer";
-import Timer from "../components/Timer";
-import RoundOracle from "../components/RoundOracle";
-import TVChart from "../components/TVChart";
-import OracleHistory from "../components/OracleHistory";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { API_HOST } from "../api_host";
 import styled from "styled-components";
+import "bootstrap/dist/css/bootstrap.min.css";
+// @COMPONENTS
+import Averages from "../components/Rounds/Averages";
+import RoundsHistory from "../components/Rounds/RoundsHistory";
+import RoundOracle from "../components/Oracle/RoundOracle";
+import TVCharts from "../components/Charts/TVCharts";
+import OracleHistory from "../components/Oracle/OracleHistory";
+import RangedChartBasic from "../components/Charts/RangedChartBasic";
+import Timers from "../components/Timer/Timers";
+// @MISC
+import { API_HOST } from "../api_host";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  margin-top: 10px;
+  background-color: #171b26;
+`;
 
-function Timers({ timing }) {
-  const [fetching, setFetching] = useState(false);
-  const [currentTiming, setTiming] = useState(timing);
-
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      if (fetching === false) {
-        setFetching(true);
-        const res = await fetch(`${API_HOST}/api/scrape/timing`);
-
-        if (res.status === 200) {
-          const data = await res.json();
-          setTiming(data);
-        }
-        setFetching(false);
-      }
-    }, 1000 * 10);
-    return () => clearInterval(interval);
-  });
-
-  const { candleTiming, oracle: lastOracle } = currentTiming;
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-evenly",
-      }}
-    >
-      <CandleTimer style={{ width: "30%" }} candleTiming={candleTiming} />
-      <OracleTimer
-        style={{ width: "30%" }}
-        candleTiming={parseInt(lastOracle.date)}
-      />
-      <Timer style={{ width: "30%" }} oracle={lastOracle} />
-    </div>
-  );
-}
+const RootWrapper = styled.div`
+  background-color: #171b26;
+  color: #d8d8d8;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif !important;
+`;
 
 function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
   return (
@@ -64,40 +38,40 @@ function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div style={{ marginTop: "5px" }}>
+
+      <RootWrapper>
         <Wrapper>
-          <div>
-            <Timers timing={timing} />
-          </div>
+          <Timers timing={timing} />
           <hr />
           <RoundOracle oracle={oracle} />
           <OracleHistory oracles={oracles.oraclesData} />
         </Wrapper>
-        <TVChart />
+        <TVCharts />
+        <Averages averages={averages} />
         <hr />
-        <RangedData averages={averages} />
+        <RangedChartBasic />
         <hr />
-        <RangedRounds rounds={averagesWithHistory.entries} />
-      </div>
+        <RoundsHistory rounds={averagesWithHistory.entries} />
+      </RootWrapper>
     </>
   );
 }
 
 //getStaticProps
-export async function getServerSideProps(context) {
-  let res = await fetch(`${API_HOST}/api/scrape/2H`);
+export async function getServerSideProps() {
+  let res = await fetch(`${API_HOST}/api/rounds/period/2H`);
   const averages = await res.json();
 
-  res = await fetch(`${API_HOST}/api/scrape/2H/history`);
+  res = await fetch(`${API_HOST}/api/rounds/period/2H/history`);
   const averagesWithHistory = await res.json();
 
-  res = await fetch(`${API_HOST}/api/scrape/timing`);
+  res = await fetch(`${API_HOST}/api/oracle/timing`);
   const timing = await res.json();
 
-  res = await fetch(`${API_HOST}/api/scrape/current-oracle`);
+  res = await fetch(`${API_HOST}/api/oracle/current`);
   const oracle = await res.json();
 
-  res = await fetch(`${API_HOST}/api/scrape/oracle/70`);
+  res = await fetch(`${API_HOST}/api/oracle/limit/70`);
   const oracles = await res.json();
 
   // TODO error handling

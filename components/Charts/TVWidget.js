@@ -1,3 +1,4 @@
+// @EXTERNALS
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
@@ -229,35 +230,4 @@ export class TradingViewWidget extends PureComponent {
   };
 
   render = () => <article id={this.containerId} style={this.getStyle()} />;
-}
-
-export default function TVChart() {
-  const studies = ["BB@tv-basicstudies", "WilliamsFractal@tv-basicstudies"];
-
-  //   useEffect(() => {
-  //     document.cookie = "cross-site-cookie=bar; SameSite=None; Secure";
-  //   }, []);
-
-  return (
-    <div style={{ display: "flex" }}>
-      <TradingViewWidget
-        symbol={"BTCUSDT"}
-        interval="5"
-        locale="en"
-        timezone="Europe/Paris"
-        hideSideToolbar={true}
-        studies={studies}
-        idd="abc"
-      />
-      <TradingViewWidget
-        symbol={"BNBUSDT"}
-        interval="5"
-        locale="en"
-        timezone="Europe/Paris"
-        hideSideToolbar={true}
-        studies={studies}
-        idd="bcd"
-      />
-    </div>
-  );
 }

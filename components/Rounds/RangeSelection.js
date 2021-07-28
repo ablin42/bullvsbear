@@ -1,5 +1,12 @@
+// @EXTERNALS
 import React, { useState, useEffect } from "react";
-import { API_HOST } from "../api_host";
+import styled from "styled-components";
+// @MISC
+import { API_HOST } from "../../api_host";
+
+const Wrapper = styled.div`
+  margin: 15px 0;
+`;
 
 const RANGE_OPTIONS = [
   "1H",
@@ -15,6 +22,7 @@ const RANGE_OPTIONS = [
   "6M",
 ];
 
+// * TAKES A SETTER FUNCTION, DISPLAY RANGE OPTIONS AS BUTTONS, FETCHES DATA AND SET IT FOR PARENT *
 export default function RangeSelection({ setData }) {
   const [range, setRange] = useState("2H");
   const [fetching, setFetching] = useState(false);
@@ -22,7 +30,7 @@ export default function RangeSelection({ setData }) {
   async function handleClick(range) {
     try {
       setFetching(true);
-      const res = await fetch(`${API_HOST}/api/scrape/${range}`);
+      const res = await fetch(`${API_HOST}/api/rounds/period/${range}`);
 
       if (res.status === 200) {
         setRange(range);
@@ -44,28 +52,29 @@ export default function RangeSelection({ setData }) {
     return () => clearInterval(interval);
   });
 
+  const btnClass = "btn btn-outline-primary";
+  const activeBtnClass = "btn btn-outline-primary active";
   return (
-    <div>
-      <button
-        style={{ marginRight: "30px" }}
-        onClick={() => handleClick(range)}
-      >
-        REFRESH
-      </button>
-      {RANGE_OPTIONS.map((rangeValue) => {
-        return (
+    <Wrapper>
+      <div className="btn-group" role="group" aria-label="range options">
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={() => handleClick(range)}
+        >
+          REFRESH
+        </button>
+        {RANGE_OPTIONS.map((rangeValue) => (
           <button
+            type="button"
+            className={range === rangeValue ? activeBtnClass : btnClass}
             key={rangeValue}
-            style={{ borderStyle: range === rangeValue ? "inset" : "initial" }}
             onClick={() => handleClick(rangeValue)}
           >
             {rangeValue}
           </button>
-        );
-      })}
-      <br />
-      <br />
-      <h1>{range}</h1>
-    </div>
+        ))}
+      </div>
+    </Wrapper>
   );
 }

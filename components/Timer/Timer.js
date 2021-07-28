@@ -1,6 +1,8 @@
+// @EXTERNALS
 import React, { useState, useEffect } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
+// * TAKES TIMELEFT (eg 4:30) AND RETURNS TIMELEFT IN SECONDS *
 export default function Timer({ oracle }) {
   const [minutes, seconds] = oracle.timeLeft.split(":").map((item) => +item);
   const secondsLeft = parseInt(
@@ -20,15 +22,18 @@ export default function Timer({ oracle }) {
     return () => clearInterval(interval);
   });
 
-  const variant = timeLeft > 60 ? "default" : "danger";
+  let variant = "default";
+  if (timeLeft < 60) variant = "warning";
+  if (timeLeft < 40) variant = "danger";
   return (
-    <div style={{ width: "30%" }}>
-      <h3 style={{ textAlign: "center" }}>time left</h3>
-
+    <div>
+      <h3>Time left</h3>
       <ProgressBar
-        now={(300 - timeLeft) / 3}
+        striped
+        animated
         variant={variant}
-        label={timeLeft + "s / 300s"}
+        now={(300 - timeLeft) / 3}
+        label={timeLeft + "s left"}
       />
     </div>
   );
