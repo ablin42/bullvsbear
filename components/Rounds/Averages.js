@@ -65,8 +65,7 @@ export default function Averages({ averages }) {
             <tr>
               <th scope="row">DOWN Rounds</th>
               <td>
-                DOWN ROUNDS: {consumedData.nbRoundDOWN} | DIFF:{" "}
-                {consumedData.avgDiffDOWN}
+                {consumedData.nbRoundDOWN} | DIFF: {consumedData.avgDiffDOWN}
               </td>
             </tr>
           </tbody>
