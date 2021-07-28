@@ -4,7 +4,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 
 // * TAKES A TIMESTAMP AND RETURNS THE SECONDS SINCE THAT TIMESTAMP *
 export default function OracleTimer({ candleTiming }) {
-  const [secondsSince, setSecondsSince] = useState(calculateSecondsSince());
+  const [secondsSince, setSecondsSince] = useState(0);
   const [timing, setTiming] = useState(candleTiming);
 
   useEffect(() => {

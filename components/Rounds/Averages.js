@@ -4,11 +4,16 @@ import styled from "styled-components";
 // @COMPONENTS
 import RangeSelection from "./RangeSelection";
 
+//  width: 30%;
+//   margin: auto;
 const TableWrapper = styled.div`
-  width: 30%;
-  margin: auto;
   text-align: left;
   border-radius: 5px;
+`;
+
+const Wrapper = styled.div`
+  text-align: center;
+  margin: 20px 0;
 `;
 
 // * TAKES AN AVERAGE OBJECT AND DISPLAYS IT *
@@ -16,11 +21,11 @@ export default function Averages({ averages }) {
   const [consumedData, setData] = useState(averages);
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <Wrapper>
       <RangeSelection setData={setData} />
 
-      <TableWrapper>
-        <table className="table table-dark">
+      <TableWrapper className="row m-0">
+        <table className="table table-dark col-xl-4 offset-xl-4">
           <thead>
             <tr>
               <th scope="col">Esperance (10$ bet)</th>
@@ -71,6 +76,6 @@ export default function Averages({ averages }) {
           </tbody>
         </table>
       </TableWrapper>
-    </div>
+    </Wrapper>
   );
 }

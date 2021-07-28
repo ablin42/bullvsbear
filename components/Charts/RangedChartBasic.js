@@ -14,7 +14,7 @@ const CenteredFlexDiv = styled.div`
 `;
 
 const ItemWrapper = styled.div`
-  margin: 0 10px;
+  text-align: center;
 `;
 
 // * RETURNS TWO DATETIME PICKER AND A SEARCH BUTTON, RETURNS RESULT AS A CHART *
@@ -57,32 +57,33 @@ export default function RangedChartBasic() {
 
   return (
     <>
-      <CenteredFlexDiv>
-        <ItemWrapper>
-          <DateTime
-            value={startDate}
-            target="startDate"
-            handleChange={handleChange}
-          />
-        </ItemWrapper>
-        <ItemWrapper>
-          <DateTime
-            value={endDate}
-            target="endDate"
-            handleChange={handleChange}
-          />
-        </ItemWrapper>
-        <ItemWrapper>
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => search()}
-          >
-            SEARCH
-          </button>
-        </ItemWrapper>
+      <CenteredFlexDiv className="row">
+        <CenteredFlexDiv className="row col-xl-6">
+          <ItemWrapper className="col-xl-5 p-2">
+            <DateTime
+              value={startDate}
+              target="startDate"
+              handleChange={handleChange}
+            />
+          </ItemWrapper>
+          <ItemWrapper className="col-xl-5 p-2">
+            <DateTime
+              value={endDate}
+              target="endDate"
+              handleChange={handleChange}
+            />
+          </ItemWrapper>
+          <ItemWrapper className="col-xl-2 p-2">
+            <button
+              type="button"
+              className="btn btn-outline-primary col-xl-12"
+              onClick={() => search()}
+            >
+              SEARCH
+            </button>
+          </ItemWrapper>
+        </CenteredFlexDiv>
       </CenteredFlexDiv>
-      <hr />
       <ChartContainer data={data} />
     </>
   );

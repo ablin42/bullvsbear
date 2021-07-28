@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 const RootWrapper = styled.div`
   background-color: #171b26;
   color: #d8d8d8;
-  padding: 0;
+  padding: 0 3%;
   margin: 0;
   font-family: "Roboto", sans-serif !important;
 `;
@@ -39,18 +39,15 @@ function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <RootWrapper>
+      <RootWrapper className="container-fluid">
         <Wrapper>
           <Timers timing={timing} />
-          <hr />
           <RoundOracle oracle={oracle} />
           <OracleHistory oracles={oracles.oraclesData} />
         </Wrapper>
         <TVCharts />
         <Averages averages={averages} />
-        <hr />
         <RangedChartBasic />
-        <hr />
         <RoundsHistory rounds={averagesWithHistory.entries} />
       </RootWrapper>
     </>

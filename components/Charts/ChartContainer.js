@@ -30,7 +30,12 @@ export default function ChartContainer({ data }) {
   if (data.length <= 0) return <CenteredFlexDiv>No data</CenteredFlexDiv>;
 
   return (
-    <ResponsiveContainer width="100%" height="100%" minHeight="800px">
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+      minHeight="800px"
+      style={{ marginLeft: "-30px" }}
+    >
       <LineChart
         width={500}
         height={300}

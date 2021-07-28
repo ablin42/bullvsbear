@@ -6,27 +6,21 @@ import { API_HOST } from "../../api_host";
 
 const Wrapper = styled.div`
   text-align: center;
-`;
-
-const Tables = styled.div`
-  display: flex;
-  margin: 0 20px;
+  margin: 0;
 `;
 
 const TableWrapper = styled.div`
-  width: 15%;
-  margin: 0 30px;
   text-align: left;
   border: 1px solid #ef5350;
   border-radius: 5px;
+  height: 100%;
 `;
 
 const TableWrapperRef = styled.div`
-  width: 20%;
-  margin: 0 20px;
   text-align: left;
   border: 1px solid #d8d8d8;
   border-radius: 5px;
+  height: 100%;
 `;
 
 // * TAKES AN ORACLE ARRAY, RETURNS ORACLES CHANGES FOR THE CURRENT ROUND *
@@ -59,43 +53,45 @@ export default function RoundOracle({ oracle }) {
   const openPrice = currentOracle[0].openPrice;
   return (
     <Wrapper>
-      <Tables>
-        <TableWrapperRef>
-          <table className="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Open price</th>
-                <th scope="col" style={{ width: "250px" }}>
-                  {openPrice}$
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Round ID</th>
-                <td>{currentOracle[0].roundId}</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary"
-                    onClick={() => handleRefresh("manual")}
-                  >
-                    REFRESH
-                  </button>
-                </th>
-                <td>
-                  {!isNew && (
-                    <div className="alert alert-primary" role="alert">
-                      No new oracle refresh yet
-                    </div>
-                  )}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </TableWrapperRef>
+      <div className="row m-0">
+        <div className="col-xl-4 p-3">
+          <TableWrapperRef>
+            <table className="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Open price</th>
+                  <th scope="col" style={{ width: "250px" }}>
+                    {openPrice}$
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Round ID</th>
+                  <td>{currentOracle[0].roundId}</td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={() => handleRefresh("manual")}
+                    >
+                      REFRESH
+                    </button>
+                  </th>
+                  <td>
+                    {!isNew && (
+                      <div className="alert alert-primary" role="alert">
+                        No new oracle refresh yet
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </TableWrapperRef>
+        </div>
 
         {currentOracle.map((item, index) => {
           const color = item.oraclePrice > openPrice ? "#26a69a" : "#ef5350";
@@ -105,40 +101,42 @@ export default function RoundOracle({ oracle }) {
               : "#ef5350 !important";
 
           return (
-            <TableWrapper
-              key={index}
-              style={{
-                borderColor: color,
-              }}
-            >
-              <table className="table table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">Oracle price</th>
-                    <th scope="col" style={{ color: color }}>
-                      {item.oraclePrice}$
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">BNB price</th>
-                    <td style={{ color: BNBColor }}>{item.BNBPrice}$</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Time left</th>
-                    <td>{item.timeLeft}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">New candle in</th>
-                    <td>{item.secondsSinceCandleOpen}s</td>
-                  </tr>
-                </tbody>
-              </table>
-            </TableWrapper>
+            <div className="col-xl-2 p-3">
+              <TableWrapper
+                key={index}
+                style={{
+                  borderColor: color,
+                }}
+              >
+                <table className="table table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Oracle price</th>
+                      <th scope="col" style={{ color: color }}>
+                        {item.oraclePrice}$
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">BNB price</th>
+                      <td style={{ color: BNBColor }}>{item.BNBPrice}$</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Time left</th>
+                      <td>{item.timeLeft}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">New candle in</th>
+                      <td>{item.secondsSinceCandleOpen}s</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </TableWrapper>
+            </div>
           );
         })}
-      </Tables>
+      </div>
     </Wrapper>
   );
 }

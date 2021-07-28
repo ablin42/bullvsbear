@@ -10,11 +10,13 @@ import { API_HOST } from "../../api_host";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const ItemWrapper = styled.div`
-  width: 30%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 // * TAKES A TIMING OBJECT AND RETURNS CANDLETIMER / ORACLETIMER / TIMELEFT *
@@ -41,14 +43,14 @@ export default function Timers({ timing }) {
 
   const { candleTiming, oracle: lastOracle } = currentTiming;
   return (
-    <Wrapper>
-      <ItemWrapper>
+    <Wrapper className="row">
+      <ItemWrapper className="col-4">
         <CandleTimer candleTiming={candleTiming} />
       </ItemWrapper>
-      <ItemWrapper>
+      <ItemWrapper className="col-4">
         <OracleTimer candleTiming={parseInt(lastOracle.date)} />
       </ItemWrapper>
-      <ItemWrapper>
+      <ItemWrapper className="col-4">
         <Timer oracle={lastOracle} />
       </ItemWrapper>
     </Wrapper>

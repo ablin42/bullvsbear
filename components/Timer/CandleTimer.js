@@ -4,7 +4,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 
 // * TAKES A TIMESTAMP SINCE CANDLE OPENED AND RETURNS THE SECONDS SINCE THAT TIMESTAMP *
 export default function CandleTimer({ candleTiming }) {
-  const [timeSpent, setTimeSpent] = useState(calculateTimeSpent());
+  const [timeSpent, setTimeSpent] = useState(0);
   const [timing, setTiming] = useState(candleTiming);
 
   useEffect(() => {

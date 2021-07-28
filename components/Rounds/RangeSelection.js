@@ -56,7 +56,11 @@ export default function RangeSelection({ setData }) {
   const activeBtnClass = "btn btn-outline-primary active";
   return (
     <Wrapper>
-      <div className="btn-group" role="group" aria-label="range options">
+      <div
+        className="btn-group flex-wrap"
+        role="group"
+        aria-label="range options"
+      >
         <button
           type="button"
           className="btn btn-outline-primary"

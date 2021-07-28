@@ -8,7 +8,7 @@ export default function Timer({ oracle }) {
   const secondsLeft = parseInt(
     (minutes * 60 + seconds + (+oracle.date - +new Date()) / 1000).toFixed(0)
   );
-  const [timeLeft, setTimeLeft] = useState(secondsLeft);
+  const [timeLeft, setTimeLeft] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {

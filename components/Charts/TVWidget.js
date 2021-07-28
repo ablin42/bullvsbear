@@ -33,7 +33,7 @@ export const Themes = {
 const SCRIPT_ID = "tradingview-widget-script";
 export class TradingViewWidget extends PureComponent {
   static propTypes = {
-    idd: PropTypes.string,
+    identifier: PropTypes.string,
     allow_symbol_change: PropTypes.bool,
     autosize: PropTypes.bool,
     calendar: PropTypes.bool,
@@ -129,7 +129,7 @@ export class TradingViewWidget extends PureComponent {
     withdateranges: false,
   };
 
-  containerId = this.props.idd;
+  containerId = this.props.identifier;
 
   componentDidMount = () => {
     return this.appendScript(this.initWidget);

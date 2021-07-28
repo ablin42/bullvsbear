@@ -6,13 +6,12 @@ import { API_HOST } from "../../api_host";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 8px 0;
 `;
 
 const RightSide = styled.div`
   float: right;
-  margin-right: 30px;
   font-weight: bold;
 `;
 
@@ -41,14 +40,14 @@ export default function OracleHistory({ oracles }) {
 
   const { average, median, diffList } = oracleList;
   return (
-    <Wrapper>
-      <div>
+    <Wrapper className="row">
+      <div className="col-xl-11 p-0">
         {diffList.map((item, index) => (
           <i key={index}>{item} </i>
         ))}
       </div>
-      <RightSide>
-        Avg. {average} / Med. {median}
+      <RightSide className="col-xl-1 p-0">
+        A. {average} / M. {median}
       </RightSide>
     </Wrapper>
   );
