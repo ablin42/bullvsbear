@@ -1,5 +1,5 @@
 // @EXTERNALS
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 // @COMPONENTS
 import ChartContainer from "./ChartContainer";
@@ -19,9 +19,18 @@ const ItemWrapper = styled.div`
 
 // * RETURNS TWO DATETIME PICKER AND A SEARCH BUTTON, RETURNS RESULT AS A CHART *
 export default function RangedChartBasic() {
-  const [startDate, setStart] = useState("");
-  const [endDate, setEnd] = useState("");
+  const [startDate, setStart] = useState(
+    new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7)
+      .toISOString()
+      .substr(0, 16)
+  );
+  const [endDate, setEnd] = useState(new Date().toISOString().substr(0, 16));
   const [rounds, setRounds] = useState([]);
+  const [grouped, setGrouped] = useState(true);
+
+  useEffect(() => {
+    search();
+  }, []);
 
   async function handleChange(e, field) {
     const date = e.target.value;
@@ -32,10 +41,12 @@ export default function RangedChartBasic() {
   async function search() {
     const startTimestamp = convertDateToTimestamp(startDate);
     const endTimestamp = convertDateToTimestamp(endDate);
+
     const res = await fetch(
-      `${API_HOST}/api/rounds/timestamp/${startTimestamp}/${endTimestamp}`
+      `${API_HOST}/api/rounds/period/hourly/${startTimestamp}/${endTimestamp}/${grouped}`
     );
     const entries = await res.json();
+
     setRounds(entries);
   }
 
@@ -43,43 +54,50 @@ export default function RangedChartBasic() {
     return new Date(date).getTime();
   }
 
-  function convertTimestampToDate(timestamp) {
-    return new Date(timestamp);
-  }
-
   const data = rounds.map((item) => {
     return {
-      name: item.date,
-      pv: parseFloat(item.payoutDOWN),
-      uv: parseFloat(item.payoutUP),
+      name: item.hour + "H",
+      "Safe Avg Payout": parseFloat(item.avgSafe),
+      "Safe % Wr": parseFloat(item.safePercentWr),
+      "Risky Avg Payout": parseFloat(item.avgRisky),
+      "Risky % Wr": parseFloat(item.riskyPercentWr),
     };
   });
 
+  const btnClass = "btn btn-outline-primary ";
+  const activeBtnClass = "btn btn-outline-primary active";
   return (
     <>
       <CenteredFlexDiv className="row">
         <CenteredFlexDiv className="row col-xl-6">
-          <ItemWrapper className="col-xl-5 p-2">
+          <ItemWrapper className="col-xl-4 p-2">
             <DateTime
               value={startDate}
               target="startDate"
               handleChange={handleChange}
             />
           </ItemWrapper>
-          <ItemWrapper className="col-xl-5 p-2">
+          <ItemWrapper className="col-xl-4 p-2">
             <DateTime
               value={endDate}
               target="endDate"
               handleChange={handleChange}
             />
           </ItemWrapper>
-          <ItemWrapper className="col-xl-2 p-2">
+          <ItemWrapper className="btn-group col-xl-3 p-2">
             <button
               type="button"
-              className="btn btn-outline-primary col-xl-12"
+              className="btn btn-outline-primary "
               onClick={() => search()}
             >
               SEARCH
+            </button>
+            <button
+              type="button"
+              className={grouped ? activeBtnClass : btnClass}
+              onClick={() => setGrouped(!grouped)}
+            >
+              GROUP
             </button>
           </ItemWrapper>
         </CenteredFlexDiv>

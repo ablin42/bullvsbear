@@ -30,12 +30,7 @@ export default function ChartContainer({ data }) {
   if (data.length <= 0) return <CenteredFlexDiv>No data</CenteredFlexDiv>;
 
   return (
-    <ResponsiveContainer
-      width="100%"
-      height="100%"
-      minHeight="800px"
-      style={{ marginLeft: "-30px" }}
-    >
+    <ResponsiveContainer width="100%" height="100%" minHeight="600px">
       <LineChart
         width={500}
         height={300}
@@ -49,16 +44,42 @@ export default function ChartContainer({ data }) {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
-        <YAxis />
+        <YAxis yAxisId="left" />
+        <YAxis yAxisId="right" orientation="right" />
         <Tooltip />
         <Legend />
         <Line
+          yAxisId="left"
           type="monotone"
-          dataKey="pv"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
+          dataKey="Safe Avg Payout"
+          stroke="#0b8e3c"
+          strokeWidth={3}
+          activeDot={{ r: 5 }}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="Safe % Wr"
+          stroke="#82ca9d"
+          strokeWidth={3}
+          activeDot={{ r: 5 }}
+        />
+        <Line
+          yAxisId="left"
+          type="monotone"
+          dataKey="Risky Avg Payout"
+          stroke="#c70709"
+          strokeWidth={3}
+          activeDot={{ r: 5 }}
+        />
+        <Line
+          yAxisId="right"
+          type="monotone"
+          dataKey="Risky % Wr"
+          strokeWidth={3}
+          stroke="#cc6364"
+          activeDot={{ r: 5 }}
+        />
       </LineChart>
     </ResponsiveContainer>
   );

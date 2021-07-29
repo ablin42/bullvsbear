@@ -24,6 +24,7 @@ const ItemWrapper = styled.div`
 export default function Timers({ timing }) {
   const [fetching, setFetching] = useState(false);
   const [currentTiming, setTiming] = useState(timing);
+  const [isDown, setIsdown] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -44,15 +45,27 @@ export default function Timers({ timing }) {
   const { candleTiming, oracle: lastOracle } = currentTiming;
   return (
     <Wrapper className="row">
-      <ItemWrapper className="col-4">
-        <CandleTimer candleTiming={candleTiming} />
-      </ItemWrapper>
-      <ItemWrapper className="col-4">
-        <OracleTimer candleTiming={parseInt(lastOracle.date)} />
-      </ItemWrapper>
-      <ItemWrapper className="col-4">
-        <Timer oracle={lastOracle} />
-      </ItemWrapper>
+      {isDown && (
+        <>
+          <div
+            className="alert alert-warning col-xl-4 offset-xl-4 mb-3"
+            role="alert"
+          >
+            Pancakeswap Predictions are paused for maintenance
+          </div>
+        </>
+      )}
+      <div className="row" style={{ width: "100%" }}>
+        <ItemWrapper className="col-4">
+          <CandleTimer candleTiming={candleTiming} />
+        </ItemWrapper>
+        <ItemWrapper className="col-4">
+          <OracleTimer candleTiming={parseInt(lastOracle.date)} />
+        </ItemWrapper>
+        <ItemWrapper className="col-4">
+          <Timer oracle={lastOracle} setIsdown={setIsdown} isDown={isDown} />
+        </ItemWrapper>
+      </div>
     </Wrapper>
   );
 }
