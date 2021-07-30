@@ -55,7 +55,7 @@ export default function Timers({ timing }) {
           </div>
         </>
       )}
-      <div className="row" style={{ width: "100%" }}>
+      <div className="row m-0" style={{ width: "100%" }}>
         <ItemWrapper className="col-4">
           <CandleTimer candleTiming={candleTiming} />
         </ItemWrapper>
