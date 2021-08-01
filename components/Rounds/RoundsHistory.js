@@ -49,21 +49,20 @@ export default function RoundsHistory({ rounds }) {
                 openPrice,
                 diff,
               } = round;
-              const parsedDiff = diff.substr(1);
-              const winningPayout = parsedDiff > 0 ? payoutUP : payoutDOWN;
+              const winningPayout = diff > 0 ? payoutUP : payoutDOWN;
 
               return (
                 <tr key={id} onClick={() => handleClick(id)}>
                   <th scope="row">{id}</th>
-                  <td>{payoutUP}</td>
-                  <td>{payoutDOWN}</td>
-                  <td>{openPrice}</td>
+                  <td>x{payoutUP}</td>
+                  <td>x{payoutDOWN}</td>
+                  <td>{openPrice}$</td>
                   <td
                     style={{
-                      color: parsedDiff > 0 ? "#26a69a" : "#ef5350",
+                      color: diff > 0 ? "#26a69a" : "#ef5350",
                     }}
                   >
-                    {closePrice} {winningPayout === payoutUP ? "▲" : "▼"}
+                    {closePrice}$ {winningPayout === payoutUP ? "▲" : "▼"}
                   </td>
                 </tr>
               );

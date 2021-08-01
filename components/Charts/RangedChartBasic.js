@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 // @COMPONENTS
 import ChartContainer from "./ChartContainer";
+import ChartEsperance from "./ChartEsperance";
 import DateTime from "../Misc/DateTime";
 // @MISC
 import { API_HOST } from "../../api_host";
@@ -26,6 +27,7 @@ export default function RangedChartBasic() {
   );
   const [endDate, setEnd] = useState(new Date().toISOString().substr(0, 16));
   const [rounds, setRounds] = useState([]);
+  const [esperanceRounds, setEsperanceRounds] = useState([]);
   const [grouped, setGrouped] = useState(true);
 
   useEffect(() => {
@@ -47,6 +49,12 @@ export default function RangedChartBasic() {
     );
     const entries = await res.json();
 
+    const esperanceRes = await fetch(
+      `${API_HOST}/api/rounds/esperance/hourly/${startTimestamp}/${endTimestamp}/${grouped}`
+    );
+    const esperanceEntries = await esperanceRes.json();
+
+    setEsperanceRounds(esperanceEntries);
     setRounds(entries);
   }
 
@@ -57,10 +65,18 @@ export default function RangedChartBasic() {
   const data = rounds.map((item) => {
     return {
       name: item.hour + "H",
-      "Safe Avg Payout": parseFloat(item.avgSafe),
+      "Safe Avg Payout": item.avgSafe,
       "Safe % Wr": parseFloat(item.safePercentWr),
       "Risky Avg Payout": parseFloat(item.avgRisky),
       "Risky % Wr": parseFloat(item.riskyPercentWr),
+    };
+  });
+
+  const esperanceData = esperanceRounds.map((item) => {
+    return {
+      name: item.hour + "H",
+      "Risky EV": parseFloat(item.riskyEsperance),
+      "Safe EV": parseFloat(item.safeEsperance),
     };
   });
 
@@ -103,6 +119,7 @@ export default function RangedChartBasic() {
         </CenteredFlexDiv>
       </CenteredFlexDiv>
       <ChartContainer data={data} />
+      <ChartEsperance data={esperanceData} />
     </>
   );
 }

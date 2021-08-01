@@ -28,8 +28,12 @@ export default function Averages({ averages }) {
         <table className="table table-dark col-xl-4 offset-xl-4">
           <thead>
             <tr>
-              <th scope="col">Esperance (10$ bet)</th>
+              <th scope="col">Esperance safe (10$ bet)</th>
               <th scope="col">{consumedData.safeEsperance}$</th>
+            </tr>
+            <tr>
+              <th scope="col">Esperance risky (10$ bet)</th>
+              <th scope="col">{consumedData.riskyEsperance}$</th>
             </tr>
           </thead>
           <tbody>
@@ -55,22 +59,22 @@ export default function Averages({ averages }) {
             </tr>
             <tr>
               <th scope="row">Pool Avg.</th>
-              <td>x{consumedData.avgPool} BNB</td>
+              <td>{consumedData.avgPool} BNB</td>
             </tr>
             <tr>
               <th scope="row">Pool Med.</th>
-              <td>x{consumedData.median.pool} BNB</td>
+              <td>{consumedData.median.pool} BNB</td>
             </tr>
             <tr>
               <th scope="row">UP Rounds</th>
               <td>
-                {consumedData.nbRoundUP} | DIFF: {consumedData.avgDiffUP}
+                {consumedData.nbRoundUP} | +{consumedData.avgDiffUP} DIFF
               </td>
             </tr>
             <tr>
               <th scope="row">DOWN Rounds</th>
               <td>
-                {consumedData.nbRoundDOWN} | DIFF: {consumedData.avgDiffDOWN}
+                {consumedData.nbRoundDOWN} | {consumedData.avgDiffDOWN} DIFF
               </td>
             </tr>
           </tbody>

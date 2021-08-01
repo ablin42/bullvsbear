@@ -46,7 +46,7 @@ export default function RoundOracle({ oracle }) {
         await handleRefresh();
         setFetching(false);
       }
-    }, 1000 * 10);
+    }, 1000 * 2);
     return () => clearInterval(interval);
   });
 
@@ -95,10 +95,7 @@ export default function RoundOracle({ oracle }) {
 
         {currentOracle.map((item, index) => {
           const color = item.oraclePrice > openPrice ? "#26a69a" : "#ef5350";
-          const BNBColor =
-            item.BNBPrice > openPrice
-              ? "#26a69a !important"
-              : "#ef5350 !important";
+          const BNBClass = item.BNBPrice > openPrice ? "bull" : "bear";
 
           return (
             <div className="col-xl-2 p-3" key={index}>
@@ -119,7 +116,7 @@ export default function RoundOracle({ oracle }) {
                   <tbody>
                     <tr>
                       <th scope="row">BNB price</th>
-                      <td style={{ color: BNBColor }}>{item.BNBPrice}$</td>
+                      <td className={BNBClass}>{item.BNBPrice}$</td>
                     </tr>
                     <tr>
                       <th scope="row">Time left</th>
@@ -127,7 +124,7 @@ export default function RoundOracle({ oracle }) {
                     </tr>
                     <tr>
                       <th scope="row">New candle in</th>
-                      <td>{item.secondsSinceCandleOpen}s</td>
+                      <td>{(300 - item.secondsSinceCandleOpen).toFixed(1)}s</td>
                     </tr>
                   </tbody>
                 </table>
