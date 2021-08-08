@@ -9,6 +9,11 @@ const Wrapper = styled.div`
   margin: 0;
 `;
 
+const OracleWrapper = styled.div`
+  overflow-x: auto;
+  flex-wrap: nowrap;
+`;
+
 const TableWrapper = styled.div`
   text-align: left;
   border: 1px solid #ef5350;
@@ -53,7 +58,7 @@ export default function RoundOracle({ oracle }) {
   const openPrice = currentOracle[0].openPrice;
   return (
     <Wrapper>
-      <div className="row m-0">
+      <OracleWrapper className="row m-0">
         <div className="col-xl-4 p-3">
           <TableWrapperRef>
             <table className="table table-dark">
@@ -132,7 +137,7 @@ export default function RoundOracle({ oracle }) {
             </div>
           );
         })}
-      </div>
+      </OracleWrapper>
     </Wrapper>
   );
 }

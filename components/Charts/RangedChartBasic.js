@@ -18,6 +18,11 @@ const ItemWrapper = styled.div`
   text-align: center;
 `;
 
+const ChartWrapper = styled.div`
+  width: 108%;
+  margin-left: -5%;
+`;
+
 // * RETURNS TWO DATETIME PICKER AND A SEARCH BUTTON, RETURNS RESULT AS A CHART *
 export default function RangedChartBasic() {
   const [startDate, setStart] = useState(
@@ -118,8 +123,10 @@ export default function RangedChartBasic() {
           </ItemWrapper>
         </CenteredFlexDiv>
       </CenteredFlexDiv>
-      <ChartContainer data={data} />
-      <ChartEsperance data={esperanceData} />
+      <ChartWrapper>
+        <ChartContainer data={data} />
+        <ChartEsperance data={esperanceData} />
+      </ChartWrapper>
     </>
   );
 }
