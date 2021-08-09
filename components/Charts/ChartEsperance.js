@@ -31,7 +31,7 @@ export default function ChartEsperance({ data }) {
 
   return (
     <>
-      <div>Esperance (10$ bet)</div>
+      <div style={{ textAlign: "center" }}>Esperance (10$ bet)</div>
       <ResponsiveContainer width="100%" height="100%" minHeight="600px">
         <LineChart
           width={500}
