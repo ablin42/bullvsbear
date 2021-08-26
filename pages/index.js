@@ -11,6 +11,7 @@ import TVCharts from "../components/Charts/TVCharts";
 import OracleHistory from "../components/Oracle/OracleHistory";
 import RangedChartBasic from "../components/Charts/RangedChartBasic";
 import Timers from "../components/Timer/Timers";
+import SearchRound from "../components/Rounds/SearchRound";
 // @MISC
 import { API_HOST } from "../api_host";
 
@@ -48,7 +49,7 @@ function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
         <TVCharts />
         <Averages averages={averages} />
         <RangedChartBasic />
-        <RoundsHistory rounds={averagesWithHistory.entries} />
+        <SearchRound lastRounds={averagesWithHistory.entries} />
       </RootWrapper>
     </>
   );

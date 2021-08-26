@@ -13,6 +13,21 @@ chart black blue #171b26
 black #171b26
 */
 
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  background: #0e1118;
+}
+
+body::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+  background: #090b10;
+}
+
+body::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+  background: #0e1118;
+}
+
 html,
 body {
   background-color: #171b26;

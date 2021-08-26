@@ -29,33 +29,8 @@ const TableWrapperRef = styled.div`
 `;
 
 // * TAKES AN ORACLE ARRAY, RETURNS ORACLES CHANGES FOR THE CURRENT ROUND *
-export default function RoundOracle({ oracle }) {
-  const [currentOracle, setOracle] = useState(oracle);
-  const [isNew, setIsNew] = useState(true);
-  const [fetching, setFetching] = useState(false);
-
-  async function handleRefresh(caller = "auto") {
-    const res = await fetch(`${API_HOST}/api/oracle/current`);
-    const oracle = await res.json();
-    if (oracle.length === currentOracle.length && caller === "manual")
-      setIsNew(false);
-    else setIsNew(true);
-
-    setOracle(oracle);
-  }
-
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      if (fetching === false) {
-        setFetching(true);
-        await handleRefresh();
-        setFetching(false);
-      }
-    }, 1000 * 2);
-    return () => clearInterval(interval);
-  });
-
-  const openPrice = currentOracle[0].openPrice;
+export default function RoundOracleHistory({ oracle }) {
+  const openPrice = oracle[0].openPrice;
   return (
     <Wrapper>
       <OracleWrapper className="row m-0">
@@ -73,33 +48,18 @@ export default function RoundOracle({ oracle }) {
               <tbody>
                 <tr>
                   <th scope="row">Round ID</th>
-                  <td>{currentOracle[0].roundId}</td>
+                  <td>{oracle[0].roundId}</td>
                 </tr>
                 <tr>
-                  <th scope="row">
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary"
-                      onClick={() => handleRefresh("manual")}
-                    >
-                      REFRESH
-                    </button>
-                  </th>
-                  <td>
-                    [{currentOracle.length} / 9]
-                    {!isNew && (
-                      <div className="alert alert-primary" role="alert">
-                        No new oracle refresh yet
-                      </div>
-                    )}
-                  </td>
+                  <th scope="row">Nb of refresh</th>
+                  <td>[{oracle.length} / 9]</td>
                 </tr>
               </tbody>
             </table>
           </TableWrapperRef>
         </div>
 
-        {currentOracle.map((item, index) => {
+        {oracle.map((item, index) => {
           const color = item.oraclePrice > openPrice ? "#26a69a" : "#ef5350";
           const BNBClass = item.BNBPrice > openPrice ? "bull" : "bear";
 
