@@ -69,6 +69,7 @@ export default function SearchRound({ lastRounds }) {
         <form className="form-inline" onSubmit={(e) => handleClick(e)}>
           <div className="form-group mr-3">
             <input
+              placeholder="420"
               type="text"
               name="round-search"
               id="round-search"
@@ -79,7 +80,7 @@ export default function SearchRound({ lastRounds }) {
 
           <button
             type="button"
-            className="btn btn-outline-primary ml-1 mr-1"
+            className="btn btn-outline-primary mr-5"
             onClick={(e) => handleClick(e)}
           >
             Search
