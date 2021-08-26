@@ -26,8 +26,8 @@ export default function OracleTimer({ candleTiming }) {
   }
 
   let variant = "default";
-  if (secondsSince > 50) variant = "warning";
-  if (secondsSince > 70) variant = "danger";
+  if (secondsSince > 20) variant = "warning";
+  if (secondsSince > 30) variant = "danger";
   return (
     <div>
       <h3>Seconds since oracle update</h3>
@@ -35,8 +35,8 @@ export default function OracleTimer({ candleTiming }) {
         striped
         animated
         variant={variant}
-        now={(secondsSince / 90) * 100}
-        label={`${secondsSince}s / 90s`}
+        now={(secondsSince / 40) * 100}
+        label={`${secondsSince}s / 40s`}
       />
     </div>
   );
