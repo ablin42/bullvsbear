@@ -1,5 +1,5 @@
 // @EXTERNALS
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -16,16 +16,15 @@ const HistoryWrapper = styled.div`
 
 // * TAKES AN ARRAY OF ROUNDS AND DISPLAY THEM WITH HISTORY *
 export default function RoundsHistory({ rounds }) {
-  const [showHistory, setShowHistory] = useState(null);
-  function handleClick(id) {
-    if (showHistory === id) return setShowHistory(null);
-    setShowHistory(id);
-  }
+  const [showHistory, setShowHistory] = useState(rounds[0].roundId);
+
+  useEffect(() => {
+    setShowHistory(rounds[0].roundId);
+  }, [rounds]);
 
   const sortedRounds = rounds.sort(
     (a, b) => (a.roundId < b.roundId && 1) || -1
   );
-
   return (
     <Wrapper className="row">
       <div className="col-xl-4">
@@ -52,7 +51,7 @@ export default function RoundsHistory({ rounds }) {
               const winningPayout = diff > 0 ? payoutUP : payoutDOWN;
 
               return (
-                <tr key={id} onClick={() => handleClick(id)}>
+                <tr key={id}>
                   <th scope="row">{id}</th>
                   <td>x{payoutUP}</td>
                   <td>x{payoutDOWN}</td>
@@ -86,13 +85,16 @@ export default function RoundsHistory({ rounds }) {
               <th scope="col">BTC</th>
             </tr>
           </thead>
-          {showHistory && (
+          {
             <tbody>
               {sortedRounds.map((round) => {
                 const { roundId: id, history } = round;
 
                 if (showHistory === id) {
                   return history.map((iteration) => {
+                    const diff = iteration.BNBPrice - rounds[0].openPrice;
+                    const oracleDiff =
+                      iteration.oraclePrice - rounds[0].openPrice;
                     return (
                       <tr key={iteration.roundId + "-" + iteration.timeLeft}>
                         <th scope="row">{iteration.status}</th>
@@ -101,8 +103,20 @@ export default function RoundsHistory({ rounds }) {
                         <td>{iteration.payoutUP}</td>
                         <td>{iteration.payoutDOWN}</td>
                         <td>{iteration.poolValue}</td>
-                        <td>{iteration.oraclePrice}</td>
-                        <td>{iteration.BNBPrice}$</td>
+                        <td
+                          style={{
+                            color: oracleDiff > 0 ? "#26a69a" : "#ef5350",
+                          }}
+                        >
+                          {iteration.oraclePrice}
+                        </td>
+                        <td
+                          style={{
+                            color: diff > 0 ? "#26a69a" : "#ef5350",
+                          }}
+                        >
+                          {iteration.BNBPrice}$
+                        </td>
                         <td>{iteration.BTCPrice}$</td>
                       </tr>
                     );
@@ -110,7 +124,7 @@ export default function RoundsHistory({ rounds }) {
                 }
               })}
             </tbody>
-          )}
+          }
         </table>
       </HistoryWrapper>
     </Wrapper>
