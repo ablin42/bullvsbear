@@ -91,12 +91,22 @@ export default function RoundsHistory({ rounds }) {
                 const { roundId: id, history } = round;
 
                 if (showHistory === id) {
+                  let previousIteration = { status: null };
                   return history.map((iteration) => {
                     const diff = iteration.BNBPrice - rounds[0].openPrice;
                     const oracleDiff =
                       iteration.oraclePrice - rounds[0].openPrice;
+                    const isLast =
+                      iteration.status === "LIVE" &&
+                      previousIteration.status === "Next";
+                    previousIteration = iteration;
                     return (
-                      <tr key={iteration.roundId + "-" + iteration.timeLeft}>
+                      <tr
+                        key={iteration.roundId + "-" + iteration.timeLeft}
+                        style={{
+                          backgroundColor: isLast ? "#747474" : "initial",
+                        }}
+                      >
                         <th scope="row">{iteration.status}</th>
                         <td>{iteration.timeLeft}</td>
                         <td>{iteration.secondsSinceCandleOpen}s</td>

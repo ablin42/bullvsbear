@@ -48,9 +48,9 @@ export default function RangeSelection({ setData }) {
       if (fetching === false) {
         await handleClick(range);
       }
-    }, 1000 * 60 * 15);
+    }, 1000 * 60 * 5);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   const btnClass = "btn btn-outline-primary";
   const activeBtnClass = "btn btn-outline-primary active";
