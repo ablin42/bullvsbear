@@ -52,7 +52,7 @@ export default function RoundOracleHistory({ oracle }) {
                 </tr>
                 <tr>
                   <th scope="row">Nb of refresh</th>
-                  <td>[{oracle.length} / 9]</td>
+                  <td>[{oracle.length} / 15]</td>
                 </tr>
               </tbody>
             </table>

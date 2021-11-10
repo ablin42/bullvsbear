@@ -86,7 +86,7 @@ export default function RoundOracle({ oracle }) {
                     </button>
                   </th>
                   <td>
-                    [{currentOracle.length} / 16]
+                    [{currentOracle.length} / 15]
                     {!isNew && (
                       <div className="alert alert-primary" role="alert">
                         No new oracle refresh yet

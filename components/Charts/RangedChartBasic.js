@@ -26,7 +26,7 @@ const ChartWrapper = styled.div`
 // * RETURNS TWO DATETIME PICKER AND A SEARCH BUTTON, RETURNS RESULT AS A CHART *
 export default function RangedChartBasic() {
   const [startDate, setStart] = useState(
-    new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7)
+    new Date(new Date().getTime() - 1000 * 60 * 60 * 4)
       .toISOString()
       .substr(0, 16)
   );
@@ -67,23 +67,31 @@ export default function RangedChartBasic() {
     return new Date(date).getTime();
   }
 
-  const data = rounds.map((item) => {
-    return {
-      name: item.hour + "H",
-      "Safe Avg Payout": item.avgSafe,
-      "Safe % Wr": parseFloat(item.safePercentWr),
-      "Risky Avg Payout": parseFloat(item.avgRisky),
-      "Risky % Wr": parseFloat(item.riskyPercentWr),
-    };
-  });
+  const data = rounds
+    .map((item) => {
+      if (!item) return;
+      return {
+        name: item.hour + "H",
+        "Safe Avg Payout": item.avgSafe,
+        "Safe % Wr": parseFloat(item.safePercentWr),
+        "Risky Avg Payout": parseFloat(item.avgRisky),
+        "Risky % Wr": parseFloat(item.riskyPercentWr),
+      };
+    })
+    .filter((item) => item !== undefined && item !== null);
 
-  const esperanceData = esperanceRounds.map((item) => {
-    return {
-      name: item.hour + "H",
-      "Risky EV": parseFloat(item.riskyEsperance),
-      "Safe EV": parseFloat(item.safeEsperance),
-    };
-  });
+  const esperanceData = esperanceRounds
+    .map((item) => {
+      if (!item) return;
+      return {
+        name: item.hour + "H",
+        "Risky EV": parseFloat(item.riskyEsperance),
+        "Safe EV": parseFloat(item.safeEsperance),
+      };
+    })
+    .filter((item) => item !== undefined && item !== null);
+
+  console.log(data);
 
   const btnClass = "btn btn-outline-primary ";
   const activeBtnClass = "btn btn-outline-primary active";
