@@ -1,20 +1,21 @@
 // @EXTERNALS
-import React from "react";
-import Head from "next/head";
-import styled from "styled-components";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // @COMPONENTS
-import Averages from "../components/Rounds/Averages";
-import RoundsHistory from "../components/Rounds/RoundsHistory";
-import RoundOracle from "../components/Oracle/RoundOracle";
-import TVCharts from "../components/Charts/TVCharts";
-import OracleHistory from "../components/Oracle/OracleHistory";
-import RangedChartBasic from "../components/Charts/RangedChartBasic";
-import Timers from "../components/Timer/Timers";
-import SearchRound from "../components/Rounds/SearchRound";
-import RoundsChart from "../components/Charts/RoundsChart";
+import Averages from '../components/Rounds/Averages';
+import RoundsHistory from '../components/Rounds/RoundsHistory';
+import RoundOracle from '../components/Oracle/RoundOracle';
+import TVCharts from '../components/Charts/TVCharts';
+import OracleHistory from '../components/Oracle/OracleHistory';
+import RangedChartBasic from '../components/Charts/RangedChartBasic';
+import Timers from '../components/Timer/Timers';
+import SearchRound from '../components/Rounds/SearchRound';
+import RoundsChart from '../components/Charts/RoundsChart';
 // @MISC
-import { API_HOST } from "../api_host";
+import { API_HOST } from '../api_host';
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -26,7 +27,7 @@ const RootWrapper = styled.div`
   color: #d8d8d8;
   padding: 0 3%;
   margin: 0;
-  font-family: "Roboto", sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
 `;
 
 function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
@@ -34,14 +35,21 @@ function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
     <>
       <Head>
         <title>Bull vs Bear</title>
-        <meta
-          name="description"
-          content="Insightful data on pancakeswap predictions"
-        />
+        <meta name="description" content="Insightful data on pancakeswap predictions" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <RootWrapper className="container-fluid">
+        <Link passHref href="/About">
+          <button className="btn btn-info m-1" style={{ float: 'right' }}>
+            About
+          </button>
+        </Link>
+        <a href="https://pcs-prediction-api.herokuapp.com/" target="_blank" rel="noreferrer">
+          <button className="btn btn-info m-1" style={{ float: 'right' }}>
+            API
+          </button>
+        </a>
         <Wrapper>
           <Timers timing={timing} />
           <RoundOracle oracle={oracle} />

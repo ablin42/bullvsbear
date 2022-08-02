@@ -12,7 +12,6 @@ export default function Custom500() {
         color: '#e8e6e3',
         backgroundcolor: '#181a1b',
       }}
-      undefined
     >
       <div>
         <h1

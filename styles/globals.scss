@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/*
+pcs red #ef5350
+pcs green #26a69a
+pcs purple #9a6aff
+pcs black #27262c
+
+chart red #ef5350
+chart green #26a69a
+chart black blue #171b26
+
+black #171b26
+*/
+
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  background: #0e1118;
+}
+
+body::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+  background: #090b10;
+}
+
+body::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+  background: #0e1118;
+}
+
+html,
+body {
+  background-color: #171b26;
+  color: #d8d8d8;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+html {
+  --main-dark: #204141;
+  --main: #2d767f;
+  --main-light: #4c9a9a;
+  --light-shade: #f2f2f2;
+  --lighter-shade: #f9f9f9;
+  --lightest-shade: #ffffff;
+  --grey: #232628;
+  --dark-shade: #1c1e1f;
+  --darker-shade: #181a1b;
+  --darkest-shade: #101010;
+}
+
+/* BOOTSTRAP CONFIG */
+@import '../node_modules/bootstrap/scss/functions';
+
+$primary: #2d767f;
+$secondary: #204141;
+$info: #4c9a9a;
+$warning: #facf5a;
+$danger: #ff5959;
+$success: #2cb978;
+
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/maps';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/root';
+@import '../node_modules/bootstrap/scss/buttons';
+
+input {
+  border: none !important;
+  background-color: #212121 !important;
+  color: #d8d8d8 !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.table {
+  margin-bottom: 0 !important;
+  height: 100% !important;
+  background-color: #212121 !important;
+}
+
+.btn,
+.alert {
+  height: 40px;
+}
+
+.alert {
+  padding: 8px 10px !important;
+  margin-bottom: 0 !important;
+}
+
+.progress {
+  background-color: #404040 !important;
+}
+
+.bear {
+  color: #ef5350 !important;
+}
+
+.bull {
+  color: #26a69a !important;
+}
+
+a,
+.fa-icon,
+.text-main {
+  color: var(--main) !important;
+}
+
+.fa-icon {
+  width: 30px;
+}
+
+a:hover,
+.fa-icon:hover {
+  color: var(--main-light);
+}
+
+.fa-white {
+  color: var(--ligther-shade) !important;
+}
+#introduction {
+  .profile-img {
+    border-radius: 50%;
+    border: 10px solid #0c0c0c !important;
+  }
+}
+
+.paragraph {
+  text-indent: 10px;
+}
+
+#introduction {
+  .profile-img {
+    border-radius: 50%;
+    border: 10px solid #0c0c0c !important;
+  }
+}
+
+/* ACCORDION */
+.accordion {
+  text-align: left;
+
+  .accordion-item {
+    background-color: var(--darker-shade);
+    border: none;
+  }
+
+  .accordion-button {
+    border: none;
+    color: var(--main) !important;
+    font-weight: bold;
+    background-color: var(--darker-shade) !important;
+  }
+}
+
+/* TOOLTIP */
+.tooltipSpecial {
+  width: fit-content;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .tooltiptextSpecial {
+    width: 120px;
+    background-color: var(--light-shade);
+    color: var(--main);
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    top: 15px;
+    opacity: 0;
+    -webkit-transition: ease-in-out 0.3s;
+    transition: ease-in-out 0.3s;
+  }
+
+  .tooltiptextSpecial::after {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 49%;
+    margin-top: -5px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid var(--light-shade);
+  }
+
+  .tooltip-visible {
+    opacity: 1 !important;
+  }
+}
+
+@-webkit-keyframes tooltipAnim {
+  0% {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes tooltipAnim {
+  0% {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.tooltipAnim {
+  -webkit-animation: tooltipAnim 0.2s 1 0s ease-in-out;
+  animation: tooltipAnim 0.2s 1 0s ease-in-out;
+}
