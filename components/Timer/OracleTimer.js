@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 // * TAKES A TIMESTAMP AND RETURNS THE SECONDS SINCE THAT TIMESTAMP *
-export default function OracleTimer({ candleTiming }) {
+export default function OracleTimer({ candleTiming, small }) {
   const [secondsSince, setSecondsSince] = useState(0);
   const [timing, setTiming] = useState(candleTiming);
 
@@ -31,7 +31,7 @@ export default function OracleTimer({ candleTiming }) {
   if (secondsSince > 30) variant = 'danger';
   return (
     <div>
-      <h3>Seconds since oracle update</h3>
+      {small ? <h6>Seconds since oracle update</h6> : <h3>Seconds since oracle update</h3>}
       <ProgressBar variant={variant} now={(secondsSince / 40) * 100} label={`${secondsSince}s / 40s`} />
     </div>
   );

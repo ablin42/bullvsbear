@@ -35,6 +35,11 @@ const TableWrapper = styled.div`
   height: auto;
 `;
 
+const SectionTitle = styled.h1`
+  color: #26a69a;
+  margin: 2.5rem 0 1.5rem -50px;
+`;
+
 const About = () => {
   const handleClipboard = (ADDRESS) => {
     const tooltip = document.querySelector(`#harb > .tooltiptextSpecial`);
@@ -68,9 +73,9 @@ const About = () => {
           <Wrapper>
             <div className="mt-5 mb-5">
               <div className="container">
-                <div className="col-8 offset-2" id="introduction">
+                <div className="col-8 offset-2 container-decorated shadow" id="introduction">
                   <h1 className="mb-3 text-main">Introduction</h1>
-                  <div className="row mb-5">
+                  <div className="row">
                     <div className="row">
                       <p className="ms-1">
                         Im <b>0xHarb</b>, a software engineer & crypto enjoyooor that loves to experiment
@@ -89,16 +94,14 @@ const About = () => {
                           </a>{' '}
                           predictions data to see if I could have an edge over other players. I started by building a
                           script to watch over pancakeswap & scraped all the data I deemed useful, after which I decided
-                          to build an app to visualize the data in an more accessible manner
-                          <br /> After a 1000 rounds of bets played using this, I had roughly <b>65% WR</b> and sizable
-                          gains, so I started looking at automating my betting process with a bot aswell
+                          to build an app to visualize the data in a more accessible manner
+                          <br /> After a thousand rounds of bets played using this, I had roughly <b>65% WR</b> and
+                          sizable gains, so I started looking at automating my betting process with a bot aswell
                         </p>
                       </div>
                     </div>
-                    <div className="row col-lg-4">
+                    <div className="row col-lg-12">
                       <div className="text-center justify-content-center">
-                        <p className="text-muted text-center">Crypto Enjoyooor</p>
-
                         <a className="m-2" target="_blank" rel="noreferrer" href="https://github.com/ablin42">
                           <FontAwesomeIcon className="fa-icon" icon={faGithub} />
                         </a>
@@ -123,17 +126,18 @@ const About = () => {
 
                 <div className="album">
                   <div className="container smaller-container pt-5">
-                    <div className="container-decorated">
+                    <div>
                       <div className="col-lg-8 offset-lg-2">
-                        <h1 className="mb-4 text-start text-main">About bullvsbear</h1>
+                        <SectionTitle>About bullvsbear</SectionTitle>
                         <div className="text-start">
                           <h2>Why ?</h2>
                           <p className="paragraph">
-                            As mentioned in the intro, this tool first started as a mean to have an edge over the other
-                            players of pancakeswap predictions. EV used to be far better before the pancakeswap update,
-                            but now it's more of a nice-to-have tool if you want to play. The <b>API</b> can also be
-                            used if you wish to create a bot or "AI" to play the predictions, some endpoints aren't
-                            documented in the <b>API</b> but feel free to DM me if you have ideas involving automation
+                            As mentioned in the intro, this tool first started as a mean to have an edge for pancakeswap
+                            predictions. <b>EV</b> used to be far better before the pancakeswap update that fixed a lot
+                            of issues with their <b>Oracle</b>, but it's still a nice-to-have tool if you want to play.
+                            The <b>API</b> can also be used if you wish to create a bot or "AI" to play the predictions,
+                            some endpoints aren't documented in the <b>API</b> though, so feel free to DM me if you have
+                            ideas involving automation
                           </p>
                           <h2 className="mt-5">How it works</h2>
                           <p>
@@ -143,9 +147,9 @@ const About = () => {
                                 prediction-scraping
                               </a>
                             </h5>
-                            A script that scrapes the data using pupeeter; It checks for changes on the page and save
-                            them to a database when they happen. Changes includes new <b>Oracle</b> update, pool
-                            increasing, new rounds..
+                            A script that crawls the website using pupeeter; It checks for changes on the page and save
+                            them to a database when they happen. Changes includes new <b>Oracle update</b>, pool
+                            increasing, new round..
                             <h5 className="mt-3">
                               <a target="_blank" href="https://github.com/ablin42/prediction-api" rel="noreferrer">
                                 prediction-api
@@ -164,11 +168,11 @@ const About = () => {
                               <a href="#notAvailable">bestbetsbots</a>
                             </h5>
                             A betting bot I mentioned in the intro, which is <b>not available to the public</b>. It uses
-                            the <b>API</b> data, and also simulate betting on each new round while also saving the data
-                            with which the bet was made
+                            the <b>API</b> data & also simulate betting on each new round and then saves the data with
+                            which the bet was made
                           </p>
                           <h2 className="mt-5">Key Concepts</h2>
-                          <h5 className="mt-4">Oracle</h5>
+                          <h5 className="text-main">Oracle</h5>
                           <div className="row">
                             <div className="col-4">
                               <TableWrapper>
@@ -200,18 +204,18 @@ const About = () => {
                             </div>
 
                             <div className="col-8">
-                              This is the standard oracle view on bullvsbear, each new entry correspond to an update in
-                              the <b>Last Price</b> on pancakeswap
+                              This is the standard oracle view on bullvsbear, a new table like this one is created for
+                              each update of the <b>Last Price</b> on pancakeswap
                               <br />
                               <br />
                               <b>Oracle Price</b> refers to the "Last Price" on pancakeswap <br />
-                              <b>BNB Price</b> refers to the price of BNB on binance at the time of the snapshot
+                              <b>BNB Price</b> refers to the price of BNB on <b>Binance</b> at the time of the snapshot
                               <br /> <b>Time Left</b> is the time left before the round ends <br />
-                              <b>New Candle In</b> is the time before a new 5mn candle appears on the charts
+                              <b>New Candle In</b> is the time before a new 5mn candle appears on the chart
                             </div>
                           </div>
-                          <h5 className="mt-4">Timers</h5>
-                          <Timers />
+                          <h5 className="mt-4 text-main">Timers</h5>
+                          <Timers small />
 
                           <div className="row mt-2">
                             <div className="col-4 text-center">
@@ -230,28 +234,29 @@ const About = () => {
                             </div>
                           </div>
 
-                          <h5 className="mt-4">Intervals</h5>
+                          <h5 className="mt-4 text-main">Intervals</h5>
                           <OracleHistory limit={25} />
 
                           <p>
                             The <b>intervals</b> displayed above are the interval of <b>Oracle</b> refreshes, making it
-                            easy to spot anomaly within refresh timing. At the time of writing, a refresh happens every
-                            20 to 30 seconds
+                            easy to spot anomalies within timing. At the time of writing, a refresh happens every 20 to
+                            30 seconds
                             <br />
-                            <i>
+                            <i className="text-muted">
                               Note: in precedent version, oracle used to refresh every 90s on average, sometimes up to
-                              +180 seconds !!
+                              +180 seconds, allowing an even greater discrepancy between the Oracle Price and the BNB
+                              price
                             </i>
                           </p>
 
-                          <h5 className="mt-4">Safe / Risky</h5>
+                          <h5 className="mt-4 text-main">Safe / Risky</h5>
                           <p>
                             In bullvsbear context, the <b>Safe</b> keyword refers to the bet side with the lowest payout
-                            of the 2, the "Safer" one. Inversely the <b>Risky</b> keyword refers to the side with the
-                            highest payout, the "Riskier" one
+                            of the 2, the "Safest" bet. Inversely the <b>Risky</b> keyword refers to the side with the
+                            highest payout, the "Higher risk / Higher reward" bet
                           </p>
 
-                          <h2 className="mt-5">Tips</h2>
+                          <SectionTitle>Tips</SectionTitle>
                           <p className="paragraph">
                             In a typical setup, you would wait for the confluence of atleast some of the indicators
                             displayed on the website. I've had the most success entering bets when a new candle was just
@@ -260,15 +265,14 @@ const About = () => {
                           </p>
                           <div className="row mb-4">
                             <div className="col-5 pt-2 ps-0">
-                              {/* <Image alt="averages" src="/screenshots/averages.png" width="350" height="500" /> */}
                               <Averages hide />
                             </div>
                             <div className="col-7">
                               <p>
-                                Checking the recent results of rounds can be quite useful to determine the trend, adapt
-                                your strategy <br />
-                                On top of that I recommend checking the EV chart for a quick look at which strategy is
-                                performing better
+                                Checking the <b>averages</b> can be quite useful to determine the trend and adapt your
+                                strategy <br />
+                                On top of that I recommend checking the <b>EV chart</b> for a quick look at which
+                                strategy is performing better
                               </p>
                               <p></p>
 
@@ -282,18 +286,18 @@ const About = () => {
                                   className="rounded-1"
                                 />
                               </div>
-                              <i className="text-center d-inline-block">
+                              <i className="text-center text-muted d-inline-block">
                                 Note: You can <b>group/ungroup</b> the results by hour to check if some hours are more
                                 profitable than others
                               </i>
                             </div>
                           </div>
                           <p>
-                            You can check the history of any past rounds by entering the round number in the search bar
-                            at the bottom of the page.
+                            You can check the <b>history</b> of any past rounds by entering the round number in the
+                            search bar at the bottom of the page.
                             <br />
                           </p>
-                          <i>
+                          <i className="text-muted">
                             Note: When the Oracle Price is below the Open price, it will be highlighted in red,
                             inversely it will be highlighted in green if it's above the Open Price. The same applies to
                             BNB Price in the history table

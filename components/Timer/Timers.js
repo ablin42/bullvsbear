@@ -21,7 +21,7 @@ const ItemWrapper = styled.div`
 
 // * TAKES A TIMING OBJECT AND RETURNS CANDLETIMER / ORACLETIMER / TIMELEFT *
 // * REFRESHES EVERY 10s *
-export default function Timers({ timing = null }) {
+export default function Timers({ timing = null, small = false }) {
   const [fetching, setFetching] = useState(false);
   const [currentTiming, setTiming] = useState(timing);
   const [isDown, setIsdown] = useState(false);
@@ -61,13 +61,13 @@ export default function Timers({ timing = null }) {
       )}
       <div className="row m-0" style={{ width: '100%' }}>
         <ItemWrapper className="col-4 ps-0">
-          <CandleTimer candleTiming={candleTiming} />
+          <CandleTimer candleTiming={candleTiming} small={small} />
         </ItemWrapper>
         <ItemWrapper className="col-4">
-          <OracleTimer candleTiming={parseInt(lastOracle.date)} />
+          <OracleTimer candleTiming={parseInt(lastOracle.date)} small={small} />
         </ItemWrapper>
         <ItemWrapper className="col-4 pe-0">
-          <Timer oracle={lastOracle} setIsdown={setIsdown} isDown={isDown} />
+          <Timer oracle={lastOracle} setIsdown={setIsdown} isDown={isDown} small={small} />
         </ItemWrapper>
       </div>
     </Wrapper>

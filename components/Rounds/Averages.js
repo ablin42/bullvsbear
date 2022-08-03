@@ -12,21 +12,12 @@ const TableWrapper = styled.div`
   width: initial;
 `;
 
-const Wrapper = styled.div`
-  text-align: center;
-  margin: 20px 0;
-  flex-direction: column !important;
-  width: fit-content !important;
-  margin: auto !important;
-  justify-content: center;
-`;
-
 // * TAKES AN AVERAGE OBJECT AND DISPLAYS IT *
 export default function Averages({ averages, hide = false }) {
   const [consumedData, setData] = useState(averages);
 
   return (
-    <Wrapper class="row">
+    <div className="row averages-wrapper">
       <RangeSelection setData={setData} hide={hide} />
 
       {consumedData && (
@@ -108,6 +99,6 @@ export default function Averages({ averages, hide = false }) {
           </div>
         </TableWrapper>
       )}
-    </Wrapper>
+    </div>
   );
 }

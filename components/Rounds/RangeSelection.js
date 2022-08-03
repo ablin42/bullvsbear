@@ -6,6 +6,7 @@ import { API_HOST } from '../../api_host';
 
 const Wrapper = styled.div`
   margin: 10px 0;
+  width: inherit;
 `;
 
 const RANGE_OPTIONS = ['1H', '2H', '4H', '8H', '12H', '1D', '3D', '1W', '1M', '3M', '6M'];

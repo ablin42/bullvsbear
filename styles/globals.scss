@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+.container-decorated {
+  border-radius: 15px;
+  padding: 24px;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2326a69a' fill-opacity='0.05'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
 body::-webkit-scrollbar,
 div::-webkit-scrollbar {
   background: #0e1118;
@@ -64,14 +71,11 @@ a {
   text-decoration: none !important;
 }
 
-a:hover {
-  color: white !important;
-}
-
 * {
   box-sizing: border-box;
 }
 
+/* BOOTSTRAP OVERRIDES */
 .table,
 .table-dark {
   margin-bottom: 0 !important;
@@ -141,6 +145,7 @@ tbody tr:last-child td {
   background-color: #404040 !important;
 }
 
+/* GENERAL */
 .bear {
   color: #ef5350 !important;
 }
@@ -162,17 +167,19 @@ b,
 
 a:hover,
 .fa-icon:hover {
-  color: var(--main-light);
+  color: var(--main-light) !important;
 }
 
 .fa-white {
   color: var(--ligther-shade) !important;
 }
-#introduction {
-  .profile-img {
-    border-radius: 50%;
-    border: 10px solid #0c0c0c !important;
-  }
+
+.averages-wrapper {
+  text-align: center;
+  margin: 20px 0;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
 }
 
 .paragraph {
@@ -183,23 +190,6 @@ a:hover,
   .profile-img {
     border-radius: 50%;
     border: 10px solid #0c0c0c !important;
-  }
-}
-
-/* ACCORDION */
-.accordion {
-  text-align: left;
-
-  .accordion-item {
-    background-color: var(--darker-shade);
-    border: none;
-  }
-
-  .accordion-button {
-    border: none;
-    color: var(--main) !important;
-    font-weight: bold;
-    background-color: var(--darker-shade) !important;
   }
 }
 

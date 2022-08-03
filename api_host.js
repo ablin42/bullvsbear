@@ -1,4 +1,4 @@
-const API_HOST = 'https://pcs-prediction-api.herokuapp.com';
+const API_HOST = 'http://localhost:8181';
 // https://pcs-predictions.herokuapp.com
 // http://localhost:8080
 module.exports = {

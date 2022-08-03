@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 // * TAKES A TIMESTAMP SINCE CANDLE OPENED AND RETURNS THE SECONDS SINCE THAT TIMESTAMP *
-export default function CandleTimer({ candleTiming }) {
+export default function CandleTimer({ candleTiming, small }) {
   const [timeSpent, setTimeSpent] = useState(0);
   const [timing, setTiming] = useState(candleTiming);
 
@@ -33,7 +33,7 @@ export default function CandleTimer({ candleTiming }) {
   if (timeSpent > 240 || timeSpent < 60) variant = 'info';
   return (
     <div>
-      <h3>Candle lifespan</h3>
+      {small ? <h6>Candle lifespan</h6> : <h3>Candle lifespan</h3>}
       <ProgressBar variant={variant} now={timeSpent / 3} label={`${timeSpent}s / 300s`} />
     </div>
   );
