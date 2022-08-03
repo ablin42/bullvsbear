@@ -63,6 +63,7 @@ export default function SearchRound({ lastRounds }) {
   rounds.push(round);
   const activeBtn = 'btn btn-outline-primary active ms-1 me-1';
   const btn = 'btn btn-outline-primary ms-1 me-1';
+
   return (
     <Wrapper>
       <Wrapper style={{ justifyContent: 'center', display: 'flex' }}>
@@ -96,8 +97,8 @@ export default function SearchRound({ lastRounds }) {
           })}
         </form>
       </Wrapper>
-      {oracle && <RoundOracleHistory oracle={oracle} />}
-      {round && <RoundsHistory rounds={rounds} />}
+      {oracle && oracle.length > 0 && <RoundOracleHistory oracle={oracle} />}
+      {rounds[0] && <RoundsHistory rounds={rounds} />}
     </Wrapper>
   );
 }
