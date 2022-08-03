@@ -7,7 +7,6 @@ import styled from 'styled-components';
 // import Accordion from 'react-bootstrap/Accordion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEthereum, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import 'bootstrap/dist/css/bootstrap.min.css';
 // @COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';

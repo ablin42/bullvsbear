@@ -2,7 +2,6 @@
 import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.min.css';
 // @COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';

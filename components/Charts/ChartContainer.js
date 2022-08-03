@@ -39,7 +39,7 @@ export default function ChartContainer({ data }) {
           <XAxis dataKey="name" />
           <YAxis yAxisId="left" />
           <YAxis yAxisId="right" orientation="right" />
-          <Tooltip />
+          <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid grey', borderRadius: '2px' }} />
           <Legend />
           <Line
             yAxisId="left"
