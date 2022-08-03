@@ -1,11 +1,11 @@
 // @EXTERNALS
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 // @COMPONENTS
-import RoundsHistory from "./RoundsHistory";
-import RoundOracleHistory from "../Oracle/RoundOracleHistory";
+import RoundsHistory from './RoundsHistory';
+import RoundOracleHistory from '../Oracle/RoundOracleHistory';
 // @MISC
-import { API_HOST } from "../../api_host";
+import { API_HOST } from '../../api_host';
 
 const Wrapper = styled.div`
   margin: 15px 0;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 export default function SearchRound({ lastRounds }) {
   const [round, setRound] = useState(null);
   const [oracle, setOracle] = useState(null);
-  const [field, setField] = useState("");
+  const [field, setField] = useState('');
   const [selectedRound, setSelected] = useState(null);
   lastRounds.splice(15, 12);
 
@@ -34,7 +34,7 @@ export default function SearchRound({ lastRounds }) {
         setOracle(dataOracle);
       }
     } catch (err) {
-      console.log("An error occured with the API");
+      console.log('An error occured with the API');
     }
   }
 
@@ -61,30 +61,27 @@ export default function SearchRound({ lastRounds }) {
 
   const rounds = [];
   rounds.push(round);
-  const activeBtn = "btn btn-outline-primary active ml-1 mr-1";
-  const btn = "btn btn-outline-primary ml-1 mr-1";
+  const activeBtn = 'btn btn-outline-primary active ms-1 me-1';
+  const btn = 'btn btn-outline-primary ms-1 me-1';
   return (
     <Wrapper>
-      <Wrapper style={{ justifyContent: "center", display: "flex" }}>
-        <form className="form-inline" onSubmit={(e) => handleClick(e)}>
-          <div className="form-group mr-3">
+      <Wrapper style={{ justifyContent: 'center', display: 'flex' }}>
+        <form className="d-flex" onSubmit={(e) => handleClick(e)}>
+          <div className="input-group">
             <input
               placeholder="420"
               type="text"
               name="round-search"
               id="round-search"
-              className="p-2"
+              className="form-control"
               onChange={(e) => handleChange(e)}
             />
+
+            <button type="button" className="btn btn-primary me-4" onClick={(e) => handleClick(e)}>
+              Search
+            </button>
           </div>
 
-          <button
-            type="button"
-            className="btn btn-outline-primary mr-5"
-            onClick={(e) => handleClick(e)}
-          >
-            Search
-          </button>
           {lastRounds.map((round) => {
             return (
               <button

@@ -1,8 +1,8 @@
 // @EXTERNALS
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 // @MISC
-import { API_HOST } from "../../api_host";
+import { API_HOST } from '../../api_host';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -16,15 +16,15 @@ const OracleWrapper = styled.div`
 
 const TableWrapper = styled.div`
   text-align: left;
-  border: 1px solid #ef5350;
-  border-radius: 5px;
+  border-radius: 4px;
+  border: 1px solid transparent;
   height: 100%;
 `;
 
 const TableWrapperRef = styled.div`
   text-align: left;
-  border: 1px solid #d8d8d8;
-  border-radius: 5px;
+  border: 1px solid transparent;
+  border-radius: 4px;
   height: 100%;
 `;
 
@@ -34,11 +34,10 @@ export default function RoundOracle({ oracle }) {
   const [isNew, setIsNew] = useState(true);
   const [fetching, setFetching] = useState(false);
 
-  async function handleRefresh(caller = "auto") {
+  async function handleRefresh(caller = 'auto') {
     const res = await fetch(`${API_HOST}/api/oracle/current`);
     const oracle = await res.json();
-    if (oracle.length === currentOracle.length && caller === "manual")
-      setIsNew(false);
+    if (oracle.length === currentOracle.length && caller === 'manual') setIsNew(false);
     else setIsNew(true);
 
     setOracle(oracle);
@@ -59,13 +58,13 @@ export default function RoundOracle({ oracle }) {
   return (
     <Wrapper>
       <OracleWrapper className="row m-0">
-        <div className="col-xl-4 p-3">
+        <div className="col-xl-4 p-3 ps-0">
           <TableWrapperRef>
-            <table className="table table-dark">
+            <table className="table table-dark shadow">
               <thead>
                 <tr>
                   <th scope="col">Open price</th>
-                  <th scope="col" style={{ width: "250px" }}>
+                  <th scope="col" style={{ width: '250px' }}>
                     {openPrice}$
                   </th>
                 </tr>
@@ -77,11 +76,7 @@ export default function RoundOracle({ oracle }) {
                 </tr>
                 <tr>
                   <th scope="row">
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary"
-                      onClick={() => handleRefresh("manual")}
-                    >
+                    <button type="button" className="btn btn-outline-primary" onClick={() => handleRefresh('manual')}>
                       REFRESH
                     </button>
                   </th>
@@ -100,8 +95,8 @@ export default function RoundOracle({ oracle }) {
         </div>
 
         {currentOracle.map((item, index) => {
-          const color = item.oraclePrice > openPrice ? "#26a69a" : "#ef5350";
-          const BNBClass = item.BNBPrice > openPrice ? "bull" : "bear";
+          const color = item.oraclePrice > openPrice ? '#26a69a' : '#ef5350';
+          const BNBClass = item.BNBPrice > openPrice ? 'bull' : 'bear';
 
           return (
             <div className="col-xl-2 p-3" key={index}>
@@ -110,7 +105,7 @@ export default function RoundOracle({ oracle }) {
                   borderColor: color,
                 }}
               >
-                <table className="table table-dark">
+                <table className="table table-dark  shadow">
                   <thead>
                     <tr>
                       <th scope="col">Oracle price</th>

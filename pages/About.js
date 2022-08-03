@@ -109,11 +109,10 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                  <hr />
                 </div>
 
                 <div className="album">
-                  <div className="container smaller-container pt-5 pb-5">
+                  <div className="container smaller-container pt-5">
                     <div className="container-decorated">
                       <div className="col-lg-8 offset-lg-2">
                         <h1 className="mb-4 text-start text-main">About bullvsbear</h1>
@@ -253,18 +252,6 @@ const About = () => {
                             inversely it will be highlighted in green if it's above the Open Price. The same applies to
                             BNB Price in the history table
                           </i>
-
-                          {/* <Image
-                          alt="timers"
-                          src="/screenshots/timers.png"
-                          width="100%"
-                          height="100%"
-                          layout="responsive"
-                          objectFit="contain"
-                        />
-                        <div style={{ width: '100%', height: '100%', position: 'relative', height: '60px' }}>
-                          <Image alt="timers" src="/screenshots/timers.png" layout="fill" objectFit="contain" />
-                        </div> */}
                         </div>
                       </div>
                     </div>

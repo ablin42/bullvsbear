@@ -1,6 +1,6 @@
 // @EXTERNALS
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,13 +22,11 @@ export default function RoundsHistory({ rounds }) {
     setShowHistory(rounds[0].roundId);
   }, [rounds]);
 
-  const sortedRounds = rounds.sort(
-    (a, b) => (a.roundId < b.roundId && 1) || -1
-  );
+  const sortedRounds = rounds.sort((a, b) => (a.roundId < b.roundId && 1) || -1);
   return (
     <Wrapper className="row">
-      <div className="col-xl-4">
-        <table className="table table-dark ">
+      <div className="col-xl-4 ps-0" style={{ height: 'fit-content' }}>
+        <table className="table table-dark shadow">
           <thead>
             <tr>
               <th scope="col">Round Nb.</th>
@@ -40,14 +38,7 @@ export default function RoundsHistory({ rounds }) {
           </thead>
           <tbody>
             {sortedRounds.map((round) => {
-              const {
-                roundId: id,
-                payoutUP,
-                payoutDOWN,
-                closePrice,
-                openPrice,
-                diff,
-              } = round;
+              const { roundId: id, payoutUP, payoutDOWN, closePrice, openPrice, diff } = round;
               const winningPayout = diff > 0 ? payoutUP : payoutDOWN;
 
               return (
@@ -58,10 +49,10 @@ export default function RoundsHistory({ rounds }) {
                   <td>{openPrice}$</td>
                   <td
                     style={{
-                      color: diff > 0 ? "#26a69a" : "#ef5350",
+                      color: diff > 0 ? '#26a69a' : '#ef5350',
                     }}
                   >
-                    {closePrice}$ {winningPayout === payoutUP ? "▲" : "▼"}
+                    {closePrice}$ {winningPayout === payoutUP ? '▲' : '▼'}
                   </td>
                 </tr>
               );
@@ -70,8 +61,8 @@ export default function RoundsHistory({ rounds }) {
         </table>
       </div>
 
-      <HistoryWrapper className="col-xl-7 p-0">
-        <table className="table table-dark">
+      <HistoryWrapper className="col-xl-7 offset-xl-1 p-0">
+        <table className="table table-dark shadow">
           <thead>
             <tr>
               <th scope="col">Status</th>
@@ -94,17 +85,14 @@ export default function RoundsHistory({ rounds }) {
                   let previousIteration = { status: null };
                   return history.map((iteration) => {
                     const diff = iteration.BNBPrice - rounds[0].openPrice;
-                    const oracleDiff =
-                      iteration.oraclePrice - rounds[0].openPrice;
-                    const isLast =
-                      iteration.status === "LIVE" &&
-                      previousIteration.status === "Next";
+                    const oracleDiff = iteration.oraclePrice - rounds[0].openPrice;
+                    const isLast = iteration.status === 'LIVE' && previousIteration.status === 'Next';
                     previousIteration = iteration;
                     return (
                       <tr
-                        key={iteration.roundId + "-" + iteration.timeLeft}
+                        key={iteration.roundId + '-' + iteration.timeLeft}
                         style={{
-                          backgroundColor: isLast ? "#747474" : "initial",
+                          backgroundColor: isLast ? '#747474' : 'initial',
                         }}
                       >
                         <th scope="row">{iteration.status}</th>
@@ -115,14 +103,14 @@ export default function RoundsHistory({ rounds }) {
                         <td>{iteration.poolValue}</td>
                         <td
                           style={{
-                            color: oracleDiff > 0 ? "#26a69a" : "#ef5350",
+                            color: oracleDiff > 0 ? '#26a69a' : '#ef5350',
                           }}
                         >
                           {iteration.oraclePrice}
                         </td>
                         <td
                           style={{
-                            color: diff > 0 ? "#26a69a" : "#ef5350",
+                            color: diff > 0 ? '#26a69a' : '#ef5350',
                           }}
                         >
                           {iteration.BNBPrice}$

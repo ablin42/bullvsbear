@@ -1,31 +1,32 @@
 // @EXTERNALS
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // @COMPONENTS
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Averages from '../components/Rounds/Averages';
-import RoundsHistory from '../components/Rounds/RoundsHistory';
+// import RoundsHistory from '../components/Rounds/RoundsHistory';
 import RoundOracle from '../components/Oracle/RoundOracle';
 import TVCharts from '../components/Charts/TVCharts';
 import OracleHistory from '../components/Oracle/OracleHistory';
 import RangedChartBasic from '../components/Charts/RangedChartBasic';
 import Timers from '../components/Timer/Timers';
 import SearchRound from '../components/Rounds/SearchRound';
-import RoundsChart from '../components/Charts/RoundsChart';
+// import RoundsChart from '../components/Charts/RoundsChart';
 // @MISC
 import { API_HOST } from '../api_host';
 
 const Wrapper = styled.div`
   margin-top: 10px;
   background-color: #171b26;
+  padding: 0 8%;
 `;
 
 const RootWrapper = styled.div`
   background-color: #171b26;
   color: #d8d8d8;
-  padding: 0 3%;
   margin: 0;
   font-family: 'Roboto', sans-serif !important;
 `;
@@ -39,28 +40,24 @@ function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <RootWrapper className="container-fluid">
-        <Link passHref href="/About">
-          <button className="btn btn-info m-1" style={{ float: 'right' }}>
-            About
-          </button>
-        </Link>
-        <a href="https://pcs-prediction-api.herokuapp.com/" target="_blank" rel="noreferrer">
-          <button className="btn btn-info m-1" style={{ float: 'right' }}>
-            API
-          </button>
-        </a>
-        <Wrapper>
-          <Timers timing={timing} />
-          <RoundOracle oracle={oracle} />
-          <OracleHistory oracles={oracles.oraclesData} />
-        </Wrapper>
-        <TVCharts />
-        <Averages averages={averages} />
-        <RangedChartBasic />
-        {/* <RoundsChart /> */}
-        <SearchRound lastRounds={averagesWithHistory.entries} />
-      </RootWrapper>
+      <>
+        <RootWrapper>
+          <Header />
+
+          <Wrapper className="container-fluid pt-2">
+            <Timers timing={timing} />
+            <RoundOracle oracle={oracle} />
+            <OracleHistory oracles={oracles.oraclesData} />
+            <TVCharts />
+            <RangedChartBasic />
+            <Averages averages={averages} />
+
+            {/* <RoundsChart /> */}
+            <SearchRound lastRounds={averagesWithHistory.entries} />
+          </Wrapper>
+          <Footer />
+        </RootWrapper>
+      </>
     </>
   );
 }

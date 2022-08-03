@@ -10,7 +10,7 @@ const StyledLink = styled.a`
 
 const Footer = () => {
   return (
-    <footer className="text-muted py-3">
+    <footer className="text-muted py-3 mt-5">
       <div className="container">
         <p className="float-end mb-1">
           <StyledLink href="#">Back to top</StyledLink>
@@ -19,7 +19,7 @@ const Footer = () => {
           Made with ❤️ by
           <StyledLink target="_blank" rel="noreferrer" href="https://github.com/ablin42">
             {' 0xharb '}
-            <FontAwesomeIcon className="fa-icon" icon={faGithub} fontSize={25} />
+            <FontAwesomeIcon className="fa-icon" icon={faGithub} style={{ width: '20px' }} />
           </StyledLink>
         </p>
       </div>

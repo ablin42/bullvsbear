@@ -39,7 +39,7 @@ body {
 
 html {
   --main-dark: #204141;
-  --main: #2d767f;
+  --main: #26a69a;
   --main-light: #4c9a9a;
   --light-shade: #f2f2f2;
   --lighter-shade: #f9f9f9;
@@ -51,20 +51,20 @@ html {
 }
 
 /* BOOTSTRAP CONFIG */
-@import '../node_modules/bootstrap/scss/functions';
+// @import '../node_modules/bootstrap/scss/functions';
 
-$primary: #2d767f;
-$secondary: #204141;
-$info: #4c9a9a;
-$warning: #facf5a;
-$danger: #ff5959;
-$success: #2cb978;
+// $primary: #26a69a;
+// $secondary: #204141;
+// $info: #4c9a9a;
+// $warning: #facf5a;
+// $danger: #ff5959;
+// $success: #2cb978;
 
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/maps';
-@import '../node_modules/bootstrap/scss/mixins';
-@import '../node_modules/bootstrap/scss/root';
-@import '../node_modules/bootstrap/scss/buttons';
+// @import '../node_modules/bootstrap/scss/variables';
+// @import '../node_modules/bootstrap/scss/maps';
+// @import '../node_modules/bootstrap/scss/mixins';
+// @import '../node_modules/bootstrap/scss/root';
+// @import '../node_modules/bootstrap/scss/buttons';
 
 input {
   border: none !important;
@@ -81,15 +81,42 @@ a {
   box-sizing: border-box;
 }
 
-.table {
+.table,
+.table-dark {
   margin-bottom: 0 !important;
   height: 100% !important;
   background-color: #212121 !important;
+  border-radius: 4px !important;
+}
+
+.table > :not(caption) > * > * {
+  border-radius: 4px;
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+  border-bottom-width: 0;
 }
 
 .btn,
 .alert {
   height: 40px;
+}
+
+.navbar {
+  height: 50px;
+  padding: 0 !important;
+
+  .container {
+    height: 50px;
+    max-width: 85%;
+
+    .btn-sm {
+      height: 30px !important;
+      width: 75px;
+      margin: 0 5px !important;
+    }
+  }
 }
 
 .alert {

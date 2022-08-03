@@ -1,8 +1,8 @@
 // @EXTERNALS
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 // @MISC
-import { API_HOST } from "../../api_host";
+import { API_HOST } from '../../api_host';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ export default function OracleHistory({ oracles }) {
   const [fetching, setFetching] = useState(false);
 
   async function handleRefresh() {
-    const res = await fetch(`${API_HOST}/api/oracle/limit/70`);
+    const res = await fetch(`${API_HOST}/api/oracle/limit/60`);
     const oracle = await res.json();
 
     setOracleList(oracle.oraclesData);

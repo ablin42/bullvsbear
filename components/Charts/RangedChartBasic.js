@@ -14,21 +14,19 @@ const CenteredFlexDiv = styled.div`
   align-items: center;
 `;
 
-const ItemWrapper = styled.div`
-  text-align: center;
-`;
-
 const ChartWrapper = styled.div`
-  width: 108%;
-  margin-left: -5%;
+  background-color: #212121;
+  padding: 25px 0;
+  border-radius: 5px;
+  margin: 0;
 `;
 
 // * RETURNS TWO DATETIME PICKER AND A SEARCH BUTTON, RETURNS RESULT AS A CHART *
 export default function RangedChartBasic() {
   const [startDate, setStart] = useState(
-    new Date(new Date().getTime() - 1000 * 60 * 60 * 4).toISOString().substr(0, 16),
+    new Date(new Date().getTime() - 1000 * 60 * 60 * 4).toISOString().substring(0, 16),
   );
-  const [endDate, setEnd] = useState(new Date().toISOString().substr(0, 16));
+  const [endDate, setEnd] = useState(new Date().toISOString().substring(0, 16));
   const [rounds, setRounds] = useState([]);
   const [esperanceRounds, setEsperanceRounds] = useState([]);
   const [grouped, setGrouped] = useState(true);
@@ -93,25 +91,29 @@ export default function RangedChartBasic() {
     <>
       <CenteredFlexDiv className="row">
         <CenteredFlexDiv className="row col-xl-6">
-          <ItemWrapper className="col-xl-4 p-2">
+          <div className="col-xl-4 p-2 text-center">
             <DateTime value={startDate} target="startDate" handleChange={handleChange} />
-          </ItemWrapper>
-          <ItemWrapper className="col-xl-4 p-2">
+          </div>
+          <div className="col-xl-4 p-2 text-center">
             <DateTime value={endDate} target="endDate" handleChange={handleChange} />
-          </ItemWrapper>
-          <ItemWrapper className="btn-group col-xl-3 p-2">
+          </div>
+          <div className="btn-group col-xl-3 p-2 text-center">
             <button type="button" className="btn btn-outline-primary " onClick={() => search()}>
               SEARCH
             </button>
             <button type="button" className={grouped ? activeBtnClass : btnClass} onClick={() => setGrouped(!grouped)}>
               GROUP
             </button>
-          </ItemWrapper>
+          </div>
         </CenteredFlexDiv>
       </CenteredFlexDiv>
-      <ChartWrapper>
-        <ChartContainer data={data} />
-        <ChartEsperance data={esperanceData} />
+      <ChartWrapper className="row shadow mb-5">
+        <div className="col-xl-6">
+          <ChartContainer data={data} />
+        </div>
+        <div className="col-xl-6">
+          <ChartEsperance data={esperanceData} />
+        </div>
       </ChartWrapper>
     </>
   );

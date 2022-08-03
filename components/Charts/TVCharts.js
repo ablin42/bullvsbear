@@ -1,22 +1,22 @@
 // @EXTERNALS
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 // @COMPONENTS
-import { TradingViewWidget } from "./TVWidget";
+import { TradingViewWidget } from './TVWidget';
 
 const Wrapper = styled.div`
-  min-height: 600px;
+  min-height: 525px;
 `;
 
 // * RETURNS TRADINGVIEW CHARTS FOR BTC/USDT AND BNB/USDT *
 export default function TVCharts() {
-  const studies = ["BB@tv-basicstudies", "WilliamsFractal@tv-basicstudies"];
+  const studies = ['BB@tv-basicstudies', 'WilliamsFractal@tv-basicstudies'];
 
   return (
-    <Wrapper className="row m-0">
+    <Wrapper className="row m-0 mb-5 shadow">
       <div className="col-lg-12 col-xl-6 p-0">
         <TradingViewWidget
-          symbol={"BTCUSDT"}
+          symbol={'BTCUSDT'}
           interval="5"
           locale="en"
           timezone="Europe/Paris"
@@ -28,7 +28,7 @@ export default function TVCharts() {
       </div>
       <div className="col-lg-12 col-xl-6 p-0">
         <TradingViewWidget
-          symbol={"BNBUSDT"}
+          symbol={'BNBUSDT'}
           interval="5"
           locale="en"
           timezone="Europe/Paris"
