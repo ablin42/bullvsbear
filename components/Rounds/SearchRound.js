@@ -17,7 +17,7 @@ export default function SearchRound({ lastRounds }) {
   const [oracle, setOracle] = useState(null);
   const [field, setField] = useState('');
   const [selectedRound, setSelected] = useState(null);
-  lastRounds.splice(15, 12);
+  lastRounds.splice(16, 12);
 
   async function handleClick(event) {
     try {
@@ -61,12 +61,12 @@ export default function SearchRound({ lastRounds }) {
 
   const rounds = [];
   rounds.push(round);
-  const activeBtn = 'btn btn-outline-primary active ms-1 me-1';
-  const btn = 'btn btn-outline-primary ms-1 me-1';
+  const activeBtn = 'btn btn-outline-primary active';
+  const btn = 'btn btn-outline-primary';
 
   return (
     <Wrapper>
-      <Wrapper style={{ justifyContent: 'center', display: 'flex' }}>
+      <Wrapper style={{ justifyContent: 'center', display: 'flex', marginleft: '-15px' }}>
         <form className="d-flex" onSubmit={(e) => handleClick(e)}>
           <div className="input-group">
             <input
@@ -82,19 +82,20 @@ export default function SearchRound({ lastRounds }) {
               Search
             </button>
           </div>
-
-          {lastRounds.map((round) => {
-            return (
-              <button
-                key={round.roundId}
-                type="button"
-                className={selectedRound === round.roundId ? activeBtn : btn}
-                onClick={() => handleButton(round.roundId)}
-              >
-                {round.roundId}
-              </button>
-            );
-          })}
+          <div className="btn-group">
+            {lastRounds.map((round) => {
+              return (
+                <button
+                  key={round.roundId}
+                  type="button"
+                  className={selectedRound === round.roundId ? activeBtn : btn}
+                  onClick={() => handleButton(round.roundId)}
+                >
+                  {round.roundId}
+                </button>
+              );
+            })}
+          </div>
         </form>
       </Wrapper>
       {oracle && oracle.length > 0 && <RoundOracleHistory oracle={oracle} />}

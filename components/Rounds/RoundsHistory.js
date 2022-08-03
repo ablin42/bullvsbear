@@ -26,7 +26,7 @@ export default function RoundsHistory({ rounds }) {
   return (
     <Wrapper className="row">
       <div className="col-xl-4 ps-0" style={{ height: 'fit-content' }}>
-        <table className="table table-dark shadow">
+        <table className="table table-dark table-striped shadow">
           <thead>
             <tr>
               <th scope="col">Round Nb.</th>
@@ -62,7 +62,7 @@ export default function RoundsHistory({ rounds }) {
       </div>
 
       <HistoryWrapper className="col-xl-7 offset-xl-1 p-0">
-        <table className="table table-dark shadow">
+        <table className="table table-dark table-striped shadow">
           <thead>
             <tr>
               <th scope="col">Status</th>
@@ -95,7 +95,7 @@ export default function RoundsHistory({ rounds }) {
                           backgroundColor: isLast ? '#747474' : 'initial',
                         }}
                       >
-                        <th scope="row">{iteration.status}</th>
+                        <th scope="row">{iteration.status.toUpperCase()}</th>
                         <td>{iteration.timeLeft}</td>
                         <td>{iteration.secondsSinceCandleOpen}s</td>
                         <td>{iteration.payoutUP}</td>

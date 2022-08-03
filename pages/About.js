@@ -14,11 +14,11 @@ import Footer from '../components/Footer';
 
 const Wrapper = styled.div`
   margin-top: 10px;
-  background-color: #171b26;
+  background-color: #11131a;
 `;
 
 const RootWrapper = styled.div`
-  background-color: #171b26;
+  background-color: #11131a;
   color: #d8d8d8;
   margin: 0;
   font-family: 'Roboto', sans-serif !important;

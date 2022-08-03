@@ -9,11 +9,15 @@ import RangeSelection from './RangeSelection';
 const TableWrapper = styled.div`
   text-align: left;
   border-radius: 5px;
+  width: initial;
 `;
 
 const Wrapper = styled.div`
   text-align: center;
   margin: 20px 0;
+  flex-direction: column !important;
+  width: fit-content !important;
+  margin: auto !important;
 `;
 
 // * TAKES AN AVERAGE OBJECT AND DISPLAYS IT *
@@ -21,61 +25,80 @@ export default function Averages({ averages }) {
   const [consumedData, setData] = useState(averages);
 
   return (
-    <Wrapper>
+    <Wrapper class="row justify-content-center">
       <RangeSelection setData={setData} />
 
-      <TableWrapper className="row m-0 mb-3">
-        <div className="col-xl-4 offset-xl-4">
-          <table className="table table-dark shadow">
-            <thead>
+      <TableWrapper className="row m-0 mb-5">
+        <div className="p-0">
+          <table className="table table-dark table-striped shadow table-fill">
+            <thead></thead>
+            <tbody>
               <tr>
                 <th scope="col">Esperance safe (10$ bet)</th>
-                <th scope="col">{consumedData.safeEsperance}$</th>
+                <th scope="col">
+                  <b>{consumedData.safeEsperance}$</b>
+                </th>
               </tr>
               <tr>
                 <th scope="col">Esperance risky (10$ bet)</th>
-                <th scope="col">{consumedData.riskyEsperance}$</th>
+                <th scope="col">
+                  <b>{consumedData.riskyEsperance}$</b>
+                </th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <th scope="row">Safe Avg.</th>
                 <td>
-                  x{consumedData.avgSafe} - {consumedData.safePercentWr}%
+                  <b>
+                    x{consumedData.avgSafe} - {consumedData.safePercentWr}%
+                  </b>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Risky Avg.</th>
                 <td>
-                  x{consumedData.avgRisky} - {consumedData.riskyPercentWr}%
+                  <b>
+                    x{consumedData.avgRisky} - {consumedData.riskyPercentWr}%
+                  </b>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Payout Avg.</th>
-                <td>x{consumedData.avgPayout}</td>
+                <td>
+                  <b>x{consumedData.avgPayout}</b>
+                </td>
               </tr>
               <tr>
                 <th scope="row">Payout Med.</th>
-                <td>x{consumedData.median.payout}</td>
+                <td>
+                  <b>x{consumedData.median.payout}</b>
+                </td>
               </tr>
               <tr>
                 <th scope="row">Pool Avg.</th>
-                <td>{consumedData.avgPool} BNB</td>
+                <td>
+                  <b>{consumedData.avgPool} BNB</b>
+                </td>
               </tr>
               <tr>
                 <th scope="row">Pool Med.</th>
-                <td>{consumedData.median.pool} BNB</td>
+                <td>
+                  <b>{consumedData.median.pool} BNB</b>
+                </td>
               </tr>
               <tr>
                 <th scope="row">UP Rounds</th>
                 <td>
-                  {consumedData.nbRoundUP} | +{consumedData.avgDiffUP} DIFF
+                  <b>
+                    {consumedData.nbRoundUP} | +{consumedData.avgDiffUP} DIFF
+                  </b>
                 </td>
               </tr>
               <tr>
                 <th scope="row">DOWN Rounds</th>
                 <td>
-                  {consumedData.nbRoundDOWN} | {consumedData.avgDiffDOWN} DIFF
+                  <b>
+                    {consumedData.nbRoundDOWN} | {consumedData.avgDiffDOWN} DIFF
+                  </b>
                 </td>
               </tr>
             </tbody>

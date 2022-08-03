@@ -30,11 +30,11 @@ export default function CandleTimer({ candleTiming }) {
   //success info warning danger
   let variant = 'default';
   if (timeSpent > 90 && timeSpent < 210) variant = 'success';
-  if (timeSpent > 240 || timeSpent < 60) variant = 'warning';
+  if (timeSpent > 240 || timeSpent < 60) variant = 'info';
   return (
     <div>
       <h3>Candle lifespan</h3>
-      <ProgressBar striped animated variant={variant} now={timeSpent / 3} label={`${timeSpent}s / 300s`} />
+      <ProgressBar variant={variant} now={timeSpent / 3} label={`${timeSpent}s / 300s`} />
     </div>
   );
 }

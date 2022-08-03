@@ -1,30 +1,18 @@
 // @EXTERNALS
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 // @MISC
-import { API_HOST } from "../../api_host";
+import { API_HOST } from '../../api_host';
 
 const Wrapper = styled.div`
-  margin: 15px 0;
+  margin: 10px 0;
 `;
 
-const RANGE_OPTIONS = [
-  "1H",
-  "2H",
-  "4H",
-  "8H",
-  "12H",
-  "1D",
-  "3D",
-  "1W",
-  "1M",
-  "3M",
-  "6M",
-];
+const RANGE_OPTIONS = ['1H', '2H', '4H', '8H', '12H', '1D', '3D', '1W', '1M', '3M', '6M'];
 
 // * TAKES A SETTER FUNCTION, DISPLAY RANGE OPTIONS AS BUTTONS, FETCHES DATA AND SET IT FOR PARENT *
 export default function RangeSelection({ setData }) {
-  const [range, setRange] = useState("2H");
+  const [range, setRange] = useState('2H');
   const [fetching, setFetching] = useState(false);
 
   async function handleClick(range) {
@@ -39,7 +27,7 @@ export default function RangeSelection({ setData }) {
       }
       setFetching(false);
     } catch (err) {
-      console.log("An error occured with the API");
+      console.log('An error occured with the API');
     }
   }
 
@@ -52,22 +40,18 @@ export default function RangeSelection({ setData }) {
     return () => clearInterval(interval);
   }, []);
 
-  const btnClass = "btn btn-outline-primary";
-  const activeBtnClass = "btn btn-outline-primary active";
+  const btnClass = 'btn btn-outline-primary';
+  const activeBtnClass = 'btn btn-outline-primary active';
   return (
     <Wrapper>
-      <div
-        className="btn-group flex-wrap"
-        role="group"
-        aria-label="range options"
-      >
-        <button
+      <div className="btn-group flex-wrap" role="group" aria-label="range options">
+        {/* <button
           type="button"
           className="btn btn-outline-primary"
           onClick={() => handleClick(range)}
         >
           REFRESH
-        </button>
+        </button> */}
         {RANGE_OPTIONS.map((rangeValue) => (
           <button
             type="button"

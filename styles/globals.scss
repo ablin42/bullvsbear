@@ -12,12 +12,12 @@ div::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb,
 div::-webkit-scrollbar-thumb {
-  background: #0e1118;
+  background: #181f2e;
 }
 
 html,
 body {
-  background-color: #171b26;
+  background-color: #11131a;
   color: #d8d8d8;
   padding: 0;
   margin: 0;
@@ -55,13 +55,17 @@ $success: #2cb978;
 
 input {
   border: none !important;
-  background-color: #212121 !important;
+  background-color: #19202a !important;
   color: #d8d8d8 !important;
 }
 
 a {
   color: inherit;
   text-decoration: none !important;
+}
+
+a:hover {
+  color: white !important;
 }
 
 * {
@@ -72,12 +76,20 @@ a {
 .table-dark {
   margin-bottom: 0 !important;
   height: 100% !important;
-  background-color: #212121 !important;
+  // background-color: #19202a;
+  --bs-table-bg: #19202a;
+  --bs-table-striped-bg: #1e2a36;
   border-radius: 4px !important;
+  overflow: hidden;
 }
 
-.table > :not(caption) > * > * {
-  border-radius: 4px;
+.table-fill {
+  width: -webkit-fill-available;
+  padding: 0;
+}
+
+.table-striped > :not(caption) > * > * {
+  border-bottom-width: 0px;
 }
 
 tbody tr:last-child th,
@@ -90,9 +102,23 @@ tbody tr:last-child td {
   height: 40px;
 }
 
+.btn-primary {
+  color: white;
+}
+
+.btn-check:checked + .btn,
+.btn-check:active + .btn,
+.btn:active,
+.btn:hover,
+.btn.active,
+.btn.show {
+  color: white !important;
+}
+
 .navbar {
   height: 50px;
   padding: 0 !important;
+  background-color: #19202a !important;
 
   .container {
     height: 50px;

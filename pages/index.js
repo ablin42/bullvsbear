@@ -19,12 +19,12 @@ import { API_HOST } from '../api_host';
 
 const Wrapper = styled.div`
   margin-top: 10px;
-  background-color: #171b26;
+  background-color: #11131a;
   padding: 0 8%;
 `;
 
 const RootWrapper = styled.div`
-  background-color: #171b26;
+  background-color: #11131a;
   color: #d8d8d8;
   margin: 0;
   font-family: 'Roboto', sans-serif !important;

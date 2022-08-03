@@ -15,7 +15,7 @@ const CenteredFlexDiv = styled.div`
 `;
 
 const ChartWrapper = styled.div`
-  background-color: #212121;
+  background-color: #19202a;
   padding: 25px 0;
   border-radius: 5px;
   margin: 0;

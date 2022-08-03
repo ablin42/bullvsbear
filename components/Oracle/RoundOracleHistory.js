@@ -34,7 +34,7 @@ export default function RoundOracleHistory({ oracle }) {
       <OracleWrapper className="row m-0">
         <div className="col-xl-4 p-3 ps-0 ms-0">
           <TableWrapperRef>
-            <table className="table table-dark  shadow">
+            <table className="table table-dark table-striped shadow">
               <thead>
                 <tr>
                   <th scope="col">Open price</th>
@@ -68,7 +68,7 @@ export default function RoundOracleHistory({ oracle }) {
                   borderColor: color,
                 }}
               >
-                <table className="table table-dark  shadow">
+                <table className="table table-dark table-striped shadow">
                   <thead>
                     <tr>
                       <th scope="col">Oracle price</th>
