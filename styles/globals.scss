@@ -51,20 +51,20 @@ html {
 }
 
 /* BOOTSTRAP CONFIG */
-// @import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/functions';
 
-// $primary: #26a69a;
-// $secondary: #204141;
-// $info: #4c9a9a;
-// $warning: #facf5a;
-// $danger: #ff5959;
-// $success: #2cb978;
+$primary: #26a69a;
+$secondary: #204141;
+$info: #4c9a9a;
+$warning: #facf5a;
+$danger: #ff5959;
+$success: #2cb978;
 
-// @import '../node_modules/bootstrap/scss/variables';
-// @import '../node_modules/bootstrap/scss/maps';
-// @import '../node_modules/bootstrap/scss/mixins';
-// @import '../node_modules/bootstrap/scss/root';
-// @import '../node_modules/bootstrap/scss/buttons';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/maps';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/root';
+@import '../node_modules/bootstrap/scss/buttons';
 
 input {
   border: none !important;
