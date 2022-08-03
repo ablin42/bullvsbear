@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 // @MISC
-import { API_HOST } from '../../api_host';
 
 const Wrapper = styled.div`
   text-align: center;

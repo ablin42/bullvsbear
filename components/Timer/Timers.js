@@ -21,27 +21,34 @@ const ItemWrapper = styled.div`
 
 // * TAKES A TIMING OBJECT AND RETURNS CANDLETIMER / ORACLETIMER / TIMELEFT *
 // * REFRESHES EVERY 10s *
-export default function Timers({ timing }) {
+export default function Timers({ timing = null }) {
   const [fetching, setFetching] = useState(false);
   const [currentTiming, setTiming] = useState(timing);
   const [isDown, setIsdown] = useState(false);
 
+  const fetchTiming = async () => {
+    setFetching(true);
+    const res = await fetch(`${API_HOST}/api/oracle/timing`);
+
+    if (res.status === 200) {
+      const data = await res.json();
+      setTiming(data);
+    }
+    setFetching(false);
+  };
+
   useEffect(() => {
     const interval = setInterval(async () => {
       if (fetching === false) {
-        setFetching(true);
-        const res = await fetch(`${API_HOST}/api/oracle/timing`);
-
-        if (res.status === 200) {
-          const data = await res.json();
-          setTiming(data);
-        }
-        setFetching(false);
+        fetchTiming();
       }
     }, 1000 * 10);
-    return () => clearInterval(interval);
-  });
+    // return () => clearInterval(interval);
 
+    fetchTiming();
+  }, []);
+
+  if (!timing && !currentTiming) return <div></div>;
   const { candleTiming, oracle: lastOracle } = currentTiming;
   return (
     <Wrapper className="row">

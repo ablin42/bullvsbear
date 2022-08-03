@@ -65,7 +65,7 @@ export default function SearchRound({ lastRounds }) {
   const btn = 'btn btn-outline-primary';
 
   return (
-    <Wrapper>
+    <Wrapper class="mt-5">
       <Wrapper style={{ justifyContent: 'center', display: 'flex', marginleft: '-15px' }}>
         <form className="d-flex" onSubmit={(e) => handleClick(e)}>
           <div className="input-group">

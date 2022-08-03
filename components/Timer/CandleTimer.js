@@ -18,6 +18,7 @@ export default function CandleTimer({ candleTiming }) {
   });
 
   function calculateTimeSpent(timing) {
+    if (!timing) return 0;
     const timestamp = +new Date() - +new Date(timing);
     const secondsSpent = timestamp / 1000;
     if (secondsSpent > 300) {
@@ -27,7 +28,6 @@ export default function CandleTimer({ candleTiming }) {
     return roundedResult;
   }
 
-  //success info warning danger
   let variant = 'default';
   if (timeSpent > 90 && timeSpent < 210) variant = 'success';
   if (timeSpent > 240 || timeSpent < 60) variant = 'info';

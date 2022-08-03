@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 8px 0;
+  color: #afafaf;
 `;
 
 const RightSide = styled.div`
@@ -16,38 +17,40 @@ const RightSide = styled.div`
 `;
 
 // * TAKES AN ARRAY OF ORACLE ENTRIES AND RETURNS THE DIFFERENCE IN SECONDS BETWEEN THEM
-export default function OracleHistory({ oracles }) {
-  const [oracleList, setOracleList] = useState(oracles);
+export default function OracleHistory({ limit = 60 }) {
+  const [_limit] = useState(limit);
+  const [oracleList, setOracleList] = useState([]);
   const [fetching, setFetching] = useState(false);
 
   async function handleRefresh() {
-    const res = await fetch(`${API_HOST}/api/oracle/limit/60`);
+    setFetching(true);
+
+    const res = await fetch(`${API_HOST}/api/oracle/limit/${_limit}`);
     const oracle = await res.json();
+    setFetching(false);
 
     setOracleList(oracle.oraclesData);
   }
 
   useEffect(() => {
+    handleRefresh();
     const interval = setInterval(async () => {
-      if (fetching === false) {
-        setFetching(true);
-        await handleRefresh();
-        setFetching(false);
-      }
+      if (fetching === false) await handleRefresh();
     }, 1000 * 10);
     return () => clearInterval(interval);
-  });
-
+  }, []);
   const { average, median, diffList } = oracleList;
   return (
     <Wrapper className="row">
-      <div className="col-xl-11 p-0">
-        {diffList.map((item, index) => (
+      <div className="w-auto p-0">
+        {diffList?.map((item, index) => (
           <i key={index}>{item} </i>
         ))}
       </div>
-      <RightSide className="col-xl-1 p-0">
-        A. {average} / M. {median}
+      <RightSide className="w-auto p-0">
+        <div style={{ minWidth: 'max-content' }}>
+          A. {average} / M. {median}
+        </div>
       </RightSide>
     </Wrapper>
   );

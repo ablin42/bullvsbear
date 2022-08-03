@@ -596,6 +596,7 @@ tbody tr:last-child td {
 }
 
 a,
+b,
 .fa-icon,
 .text-main {
   color: var(--main) !important;

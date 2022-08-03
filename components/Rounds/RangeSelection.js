@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const RANGE_OPTIONS = ['1H', '2H', '4H', '8H', '12H', '1D', '3D', '1W', '1M', '3M', '6M'];
 
 // * TAKES A SETTER FUNCTION, DISPLAY RANGE OPTIONS AS BUTTONS, FETCHES DATA AND SET IT FOR PARENT *
-export default function RangeSelection({ setData }) {
+export default function RangeSelection({ setData, hide = false }) {
   const [range, setRange] = useState('2H');
   const [fetching, setFetching] = useState(false);
 
@@ -37,11 +37,13 @@ export default function RangeSelection({ setData }) {
         await handleClick(range);
       }
     }, 1000 * 60 * 5);
-    return () => clearInterval(interval);
+
+    handleClick(range);
   }, []);
 
   const btnClass = 'btn btn-outline-primary';
   const activeBtnClass = 'btn btn-outline-primary active';
+  if (hide) return <></>;
   return (
     <Wrapper>
       <div className="btn-group flex-wrap" role="group" aria-label="range options">

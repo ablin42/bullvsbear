@@ -18,6 +18,7 @@ export default function OracleTimer({ candleTiming }) {
   });
 
   function calculateSecondsSince(timing) {
+    if (!timing) return 0;
     const timestamp = +new Date() - +new Date(timing);
     const secondsLeft = timestamp / 1000;
     const roundedResult = (Math.round(secondsLeft * 10) / 10).toFixed(0);

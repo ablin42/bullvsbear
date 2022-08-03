@@ -30,7 +30,7 @@ const RootWrapper = styled.div`
   font-family: 'Roboto', sans-serif !important;
 `;
 
-function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
+function Home({ averages, timing, oracle, averagesWithHistory }) {
   return (
     <>
       <Head>
@@ -46,7 +46,7 @@ function Home({ averages, timing, oracle, averagesWithHistory, oracles }) {
           <Wrapper className="container-fluid pt-2">
             <Timers timing={timing} />
             <RoundOracle oracle={oracle} />
-            <OracleHistory oracles={oracles.oraclesData} />
+            <OracleHistory limit={60} />
             <TVCharts />
             <RangedChartBasic />
             <Averages averages={averages} />
@@ -75,13 +75,10 @@ export async function getServerSideProps() {
   res = await fetch(`${API_HOST}/api/oracle/current`);
   const oracle = await res.json();
 
-  res = await fetch(`${API_HOST}/api/oracle/limit/70`);
-  const oracles = await res.json();
-
   // TODO error handling
   //if (averages.error) return { notFound: true };
   return {
-    props: { averages, averagesWithHistory, timing, oracle, oracles },
+    props: { averages, averagesWithHistory, timing, oracle },
   };
 }
 

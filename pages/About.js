@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 // @EXTERNALS
 import React from 'react';
@@ -10,6 +11,9 @@ import { faEthereum, faGithub, faTwitter } from '@fortawesome/free-brands-svg-ic
 // @COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import OracleHistory from '../components/Oracle/OracleHistory';
+import Timers from '../components/Timer/Timers';
+import Averages from '../components/Rounds/Averages';
 // @MISC
 
 const Wrapper = styled.div`
@@ -22,6 +26,13 @@ const RootWrapper = styled.div`
   color: #d8d8d8;
   margin: 0;
   font-family: 'Roboto', sans-serif !important;
+`;
+
+const TableWrapper = styled.div`
+  text-align: left;
+  border-radius: 4px;
+  border: 1px solid #26a69a;
+  height: auto;
 `;
 
 const About = () => {
@@ -160,7 +171,32 @@ const About = () => {
                           <h5 className="mt-4">Oracle</h5>
                           <div className="row">
                             <div className="col-4">
-                              <Image alt="timers" src="/screenshots/singleoracle.png" width="400" height="250" />
+                              <TableWrapper>
+                                <table className="table table-dark table-striped shadow p-0 m-0">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Oracle price</th>
+                                      <th scope="col" style={{ color: '#26a69a' }}>
+                                        300.935$
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">BNB price</th>
+                                      <td style={{ color: '#26a69a' }}>301.125$</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Time left</th>
+                                      <td>00:43</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">New candle in</th>
+                                      <td>13.1s</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </TableWrapper>
                             </div>
 
                             <div className="col-8">
@@ -174,10 +210,10 @@ const About = () => {
                               <b>New Candle In</b> is the time before a new 5mn candle appears on the charts
                             </div>
                           </div>
-                          {/* <p>The oracle... oracle refresh</p> */}
                           <h5 className="mt-4">Timers</h5>
-                          <Image alt="timers" src="/screenshots/timers.png" width="1000" height="75" />
-                          <div className="row">
+                          <Timers />
+
+                          <div className="row mt-2">
                             <div className="col-4 text-center">
                               <p>Seconds left for the current 5mn candle, this can be useful to time your bet</p>
                             </div>
@@ -195,7 +231,8 @@ const About = () => {
                           </div>
 
                           <h5 className="mt-4">Intervals</h5>
-                          <Image alt="timers" src="/screenshots/intervals.png" width="1000" height="30" />
+                          <OracleHistory limit={25} />
+
                           <p>
                             The <b>intervals</b> displayed above are the interval of <b>Oracle</b> refreshes, making it
                             easy to spot anomaly within refresh timing. At the time of writing, a refresh happens every
@@ -221,24 +258,34 @@ const About = () => {
                             newly formed, with an oracle refresh as recent as possible & a 0.1-0.2 price difference
                             between the Oracle & the charted BNB price
                           </p>
-                          <div className="row">
-                            <div className="col-5">
-                              <Image alt="timers" src="/screenshots/results.png" width="350" height="500" />
+                          <div className="row mb-4">
+                            <div className="col-5 pt-2 ps-0">
+                              {/* <Image alt="averages" src="/screenshots/averages.png" width="350" height="500" /> */}
+                              <Averages hide />
                             </div>
                             <div className="col-7">
-                              <p className="paragraph">
-                                Checking the recent results of rounds using these buttons can be quite useful to
-                                determine the trend, adapt your strategy and see if there's a good EV easy to grab{' '}
-                                <br />
+                              <p>
+                                Checking the recent results of rounds can be quite useful to determine the trend, adapt
+                                your strategy <br />
                                 On top of that I recommend checking the EV chart for a quick look at which strategy is
                                 performing better
                               </p>
                               <p></p>
-                              <i>
+
+                              <div className="shadow mb-2">
+                                <img
+                                  alt="charts"
+                                  src="/screenshots/chart.png"
+                                  width="100%"
+                                  height="100%"
+                                  layout="fixed"
+                                  className="rounded-1"
+                                />
+                              </div>
+                              <i className="text-center d-inline-block">
                                 Note: You can <b>group/ungroup</b> the results by hour to check if some hours are more
                                 profitable than others
                               </i>
-                              <Image alt="timers" src="/screenshots/chart2.png" width="600" height="350" />
                             </div>
                           </div>
                           <p>
