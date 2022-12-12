@@ -35,7 +35,13 @@ function Home({ averages, timing, oracle, averagesWithHistory }) {
     <>
       <Head>
         <title>Bull vs Bear</title>
-        <meta name="description" content="Insightful data on pancakeswap predictions" />
+        <meta name="description" content="Insightful data to give you an edge on pancakeswap predictions" />
+        <meta property="og:title" content="Bull vs Bear" />
+        <meta name="title" content="Bull vs Bear" />
+        <meta property="og:description" content="Insightful data to give you an edge on pancakeswap predictions" />
+        <meta name="keywords" content="bull, bear, bullvsbear, 0xharb, pancakeswap, prediction, bet, terminal, tool" />
+        <meta name="author" content="0xharb" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

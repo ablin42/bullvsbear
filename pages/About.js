@@ -62,7 +62,16 @@ const About = () => {
     <>
       <Head>
         <title>Bull vs Bear - About</title>
-        <meta name="description" content="Insightful data on pancakeswap predictions" />
+        <meta name="description" content="About bullvsbear, its author, and how it works" />
+        <meta property="og:title" content="Bull vs Bear - About" />
+        <meta name="title" content="Bull vs Bear - About" />
+        <meta property="og:description" content="About bullvsbear, its author, and how it works" />
+        <meta
+          name="keywords"
+          content="bull, bear, bullvsbear, 0xharb, pancakeswap, prediction, bet, terminal, tool, about, how-to"
+        />
+        <meta name="author" content="0xharb" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
