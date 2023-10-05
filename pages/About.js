@@ -291,7 +291,6 @@ const About = () => {
                                   src="/screenshots/chart.png"
                                   width="100%"
                                   height="100%"
-                                  layout="fixed"
                                   className="rounded-1"
                                 />
                               </div>
