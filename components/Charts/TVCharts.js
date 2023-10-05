@@ -6,6 +6,7 @@ import { TradingViewWidget } from './TVWidget';
 
 const Wrapper = styled.div`
   min-height: 525px;
+  height: 525px;
 `;
 
 // * RETURNS TRADINGVIEW CHARTS FOR BTC/USDT AND BNB/USDT *
