@@ -10,7 +10,7 @@ const StyledLink = styled.a`
 
 const Footer = () => {
   return (
-    <footer className="text-muted py-3 mt-5">
+    <footer className="text-true-muted py-3 mt-5">
       <div className="container">
         <p className="float-end mb-1">
           <StyledLink href="#">Back to top</StyledLink>

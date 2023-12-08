@@ -251,7 +251,7 @@ const About = () => {
                             easy to spot anomalies within timing. At the time of writing, a refresh happens every 20 to
                             30 seconds
                             <br />
-                            <i className="text-muted">
+                            <i className="text-true-muted">
                               Note: in precedent version, oracle used to refresh every 90s on average, sometimes up to
                               +180 seconds, allowing an even greater discrepancy between the Oracle Price and the BNB
                               price
@@ -294,7 +294,7 @@ const About = () => {
                                   className="rounded-1"
                                 />
                               </div>
-                              <i className="text-center text-muted d-inline-block">
+                              <i className="text-center text-true-muted d-inline-block">
                                 Note: You can <b>group/ungroup</b> the results by hour to check if some hours are more
                                 profitable than others
                               </i>
@@ -305,7 +305,7 @@ const About = () => {
                             search bar at the bottom of the page.
                             <br />
                           </p>
-                          <i className="text-muted">
+                          <i className="text-true-muted">
                             Note: When the Oracle Price is below the Open price, it will be highlighted in red,
                             inversely it will be highlighted in green if it's above the Open Price. The same applies to
                             BNB Price in the history table
