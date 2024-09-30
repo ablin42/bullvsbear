@@ -23,13 +23,17 @@ export default function OracleHistory({ limit = 60 }) {
   const [fetching, setFetching] = useState(false);
 
   async function handleRefresh() {
-    setFetching(true);
+    try {
+      setFetching(true);
 
-    const res = await fetch(`${API_HOST}/api/oracle/limit/${_limit}`);
-    const oracle = await res.json();
-    setFetching(false);
+      const res = await fetch(`${API_HOST}/api/oracle/limit/${_limit}`);
+      const oracle = await res.json();
+      setFetching(false);
 
-    setOracleList(oracle.oraclesData);
+      setOracleList(oracle.oraclesData);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {

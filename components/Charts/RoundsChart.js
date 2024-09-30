@@ -1,10 +1,10 @@
 // @EXTERNALS
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 // @COMPONENTS
-import ChartRounds from "./ChartRounds";
+import ChartRounds from './ChartRounds';
 // @MISC
-import { API_HOST } from "../../api_host";
+import { API_HOST } from '../../api_host';
 
 const ChartWrapper = styled.div`
   width: 108%;
@@ -20,17 +20,21 @@ export default function RangedChartBasic() {
   }, []);
 
   async function search() {
-    const res = await fetch(`${API_HOST}/api/rounds/esperance`);
-    const entries = await res.json();
+    try {
+      const res = await fetch(`${API_HOST}/api/rounds/esperance`);
+      const entries = await res.json();
 
-    setRounds(entries);
+      setRounds(entries);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const data = rounds.map((item) => {
     return {
       name: item.id,
-      "Safe EV": parseFloat(item.safeEsperance),
-      "Risky EV": parseFloat(item.riskyEsperance),
+      'Safe EV': parseFloat(item.safeEsperance),
+      'Risky EV': parseFloat(item.riskyEsperance),
     };
   });
 

@@ -35,12 +35,16 @@ export default function RoundOracle({ oracle }) {
   const [fetching, setFetching] = useState(false);
 
   async function handleRefresh(caller = 'auto') {
-    const res = await fetch(`${API_HOST}/api/oracle/current`);
-    const oracle = await res.json();
-    if (oracle.length === currentOracle.length && caller === 'manual') setIsNew(false);
-    else setIsNew(true);
+    try {
+      const res = await fetch(`${API_HOST}/api/oracle/current`);
+      const oracle = await res.json();
+      if (oracle.length === currentOracle.length && caller === 'manual') setIsNew(false);
+      else setIsNew(true);
 
-    setOracle(oracle);
+      setOracle(oracle);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {

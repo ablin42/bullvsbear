@@ -27,14 +27,18 @@ export default function Timers({ timing = null, small = false }) {
   const [isDown, setIsdown] = useState(false);
 
   const fetchTiming = async () => {
-    setFetching(true);
-    const res = await fetch(`${API_HOST}/api/oracle/timing`);
+    try {
+      setFetching(true);
+      const res = await fetch(`${API_HOST}/api/oracle/timing`);
 
-    if (res.status === 200) {
-      const data = await res.json();
-      setTiming(data);
+      if (res.status === 200) {
+        const data = await res.json();
+        setTiming(data);
+      }
+      setFetching(false);
+    } catch (error) {
+      console.log(error);
     }
-    setFetching(false);
   };
 
   useEffect(() => {

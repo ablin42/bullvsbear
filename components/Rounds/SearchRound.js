@@ -44,19 +44,23 @@ export default function SearchRound({ lastRounds }) {
   }
 
   async function handleButton(roundId) {
-    const roundNumber = roundId.substr(1);
-    const res = await fetch(`${API_HOST}/api/rounds/one/${roundNumber}`);
-    const resOracle = await fetch(`${API_HOST}/api/oracle/one/${roundNumber}`);
+    try {
+      const roundNumber = roundId.substr(1);
+      const res = await fetch(`${API_HOST}/api/rounds/one/${roundNumber}`);
+      const resOracle = await fetch(`${API_HOST}/api/oracle/one/${roundNumber}`);
 
-    if (res.status === 200) {
-      const data = await res.json();
-      setRound(data);
+      if (res.status === 200) {
+        const data = await res.json();
+        setRound(data);
+      }
+      if (resOracle.status === 200) {
+        const dataOracle = await resOracle.json();
+        setOracle(dataOracle);
+      }
+      setSelected(roundId);
+    } catch (err) {
+      console.log('An error occured with the API');
     }
-    if (resOracle.status === 200) {
-      const dataOracle = await resOracle.json();
-      setOracle(dataOracle);
-    }
-    setSelected(roundId);
   }
 
   const rounds = [];

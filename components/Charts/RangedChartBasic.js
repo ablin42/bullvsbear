@@ -45,16 +45,20 @@ export default function RangedChartBasic() {
     const startTimestamp = convertDateToTimestamp(startDate);
     const endTimestamp = convertDateToTimestamp(endDate);
 
-    const res = await fetch(`${API_HOST}/api/rounds/period/hourly/${startTimestamp}/${endTimestamp}/${grouped}`);
-    const entries = await res.json();
+    try {
+      const res = await fetch(`${API_HOST}/api/rounds/period/hourly/${startTimestamp}/${endTimestamp}/${grouped}`);
+      const entries = await res.json();
 
-    const esperanceRes = await fetch(
-      `${API_HOST}/api/rounds/esperance/hourly/${startTimestamp}/${endTimestamp}/${grouped}`,
-    );
-    const esperanceEntries = await esperanceRes.json();
+      const esperanceRes = await fetch(
+        `${API_HOST}/api/rounds/esperance/hourly/${startTimestamp}/${endTimestamp}/${grouped}`,
+      );
+      const esperanceEntries = await esperanceRes.json();
 
-    setEsperanceRounds(esperanceEntries);
-    setRounds(entries);
+      setEsperanceRounds(esperanceEntries);
+      setRounds(entries);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function convertDateToTimestamp(date) {
