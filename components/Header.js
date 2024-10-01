@@ -23,7 +23,7 @@ const Header = () => {
             <Link passHref href="/About">
               <button className="btn btn-primary btn-sm m-1">About</button>
             </Link>
-            <a href="https://prediction-pcs.herokuapp.com" target="_blank" rel="noreferrer">
+            <a href="https://0xharb.ngrok.dev" target="_blank" rel="noreferrer">
               <button className="btn btn-primary btn-sm m-1">API</button>
             </a>
           </Wrapper>
