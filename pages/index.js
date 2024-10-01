@@ -69,23 +69,27 @@ function Home({ averages, timing, oracle, averagesWithHistory }) {
 
 //getStaticProps
 export async function getServerSideProps() {
-  let res = await fetch(`${API_HOST}/api/rounds/period/2H`);
-  const averages = await res.json();
+  try {
+    let res = await fetch(`${API_HOST}/api/rounds/period/2H`);
+    const averages = await res.json();
 
-  res = await fetch(`${API_HOST}/api/rounds/period/2H/history`);
-  const averagesWithHistory = await res.json();
+    res = await fetch(`${API_HOST}/api/rounds/period/2H/history`);
+    const averagesWithHistory = await res.json();
 
-  res = await fetch(`${API_HOST}/api/oracle/timing`);
-  const timing = await res.json();
+    res = await fetch(`${API_HOST}/api/oracle/timing`);
+    const timing = await res.json();
 
-  res = await fetch(`${API_HOST}/api/oracle/current`);
-  const oracle = await res.json();
-
-  // TODO error handling
-  //if (averages.error) return { notFound: true };
-  return {
-    props: { averages, averagesWithHistory, timing, oracle },
-  };
+    res = await fetch(`${API_HOST}/api/oracle/current`);
+    const oracle = await res.json();
+    // TODO error handling
+    //if (averages.error) return { notFound: true };
+    return {
+      props: { averages, averagesWithHistory, timing, oracle },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+  return { props: {} };
 }
 
 export default Home;
